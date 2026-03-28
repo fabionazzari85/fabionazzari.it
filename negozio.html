@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pasticceria Iseo — Fabio Nazzari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-family:'DM Sans',system-ui,sans-serif;scroll-behavior:smooth}
+body{background:#F5F0E8;color:#1A1A1A;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(60,219,192,.25)}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+:root{--gold:#C9A84C;--dark:#1A1A1A;--cream:#F5F0E8;--cream-dark:#EBE4D8;--teal:#3CDBC0;--teal-light:#5CE8D2;--teal-dark:#2BC5AA}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(245,240,232,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.nav-logo{font-size:.9rem;font-weight:800;letter-spacing:.02em;text-transform:lowercase;color:var(--dark)}
+.nav-logo small{display:block;font-size:.42rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;opacity:.35;margin-top:1px}
+.nav-back{display:flex;align-items:center;gap:.4rem;font-size:.55rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);transition:gap .3s}
+.nav-back:hover{gap:.6rem}
+.nav-back svg{width:14px;height:14px}
+@media(min-width:768px){.nav{padding:1rem 2.5rem}.nav-logo{font-size:1rem}}
+
+.hero{position:relative;min-height:70vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--dark)}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{opacity:.5}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,26,.95) 0%,rgba(26,26,26,.4) 50%,rgba(26,26,26,.15) 100%)}
+.hero-inner{position:relative;z-index:2;padding:5rem 1.5rem 2.5rem;color:#fff;width:100%}
+.hero-tag{display:flex;align-items:center;gap:.6rem;font-size:.5rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem}
+.hero-tag i{width:20px;height:1px;background:var(--teal)}
+.hero h1{font-size:clamp(2rem,7vw,3.8rem);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:1rem}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero-sub{font-size:clamp(.85rem,2.2vw,1rem);font-weight:300;line-height:1.7;color:rgba(255,255,255,.6);max-width:500px}
+@media(min-width:768px){.hero{min-height:80vh}.hero-inner{padding:6rem 4rem 4rem;max-width:700px}}
+
+.sec-label{font-size:.5rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:var(--teal-dark);display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
+.sec-label i{width:18px;height:1px;background:var(--teal)}
+
+.intro{padding:3rem 1.5rem}
+.intro-text p{font-size:clamp(.9rem,2.5vw,1.05rem);line-height:1.75;color:rgba(26,26,26,.65);margin-bottom:.8rem}
+.intro-text p strong{color:var(--dark);font-weight:700}
+@media(min-width:768px){.intro{padding:5rem 4rem;max-width:800px}}
+
+.info-sec{padding:0 1.5rem 3rem}
+.info-grid{display:grid;grid-template-columns:1fr;gap:1.2rem}
+@media(min-width:768px){.info-sec{padding:0 4rem 5rem;max-width:1100px;margin:0 auto}.info-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
+.icard{background:#fff;padding:2rem 1.5rem;box-shadow:0 2px 16px rgba(0,0,0,.03)}
+.icard-icon{width:40px;height:40px;border:1px solid rgba(60,219,192,.25);display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.icard-icon svg{width:18px;height:18px;color:var(--teal-dark)}
+.icard h3{font-size:1rem;font-weight:800;margin-bottom:.3rem;color:var(--dark)}
+.icard p{font-size:.85rem;line-height:1.65;color:rgba(26,26,26,.55)}
+.icard a{color:var(--teal-dark);font-weight:600}
+
+.map-sec{background:var(--cream-dark);padding:3rem 1.5rem}
+@media(min-width:768px){.map-sec{padding:5rem 4rem;max-width:1100px;margin:0 auto}}
+.map-sec h2{font-size:clamp(1.4rem,4vw,2rem);font-weight:900;letter-spacing:-.02em;margin-bottom:.4rem}
+.map-sub{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,26,26,.3);margin-bottom:1.5rem}
+.map-frame{background:var(--dark);aspect-ratio:16/9;overflow:hidden;max-height:400px}
+.map-frame iframe{width:100%;height:100%;border:0}
+
+.gallery{padding:3rem 0 3rem 1.5rem;background:var(--cream)}
+@media(min-width:768px){.gallery{padding:5rem 0 5rem 4rem}}
+.gallery h2{font-size:clamp(1.3rem,4vw,2rem);font-weight:900;letter-spacing:-.02em;margin-bottom:1.5rem;padding-right:1.5rem}
+@media(min-width:768px){.gallery h2{padding-right:4rem}}
+.gal-track{display:flex;gap:1rem;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:1rem;padding-right:1.5rem;scrollbar-width:none}
+.gal-track::-webkit-scrollbar{display:none}
+.gal-card{flex:0 0 70vw;max-width:300px;aspect-ratio:4/5;overflow:hidden}
+@media(min-width:768px){.gal-card{flex:0 0 280px}}
+
+.cta-sec{background:var(--dark);padding:3rem 1.5rem;text-align:center}
+@media(min-width:768px){.cta-sec{padding:5rem 4rem}}
+.cta-sec h2{font-size:clamp(1.4rem,4vw,2.2rem);font-weight:900;color:var(--cream);line-height:1.12;margin-bottom:.8rem}
+.cta-sec h2 em{font-style:normal;color:var(--teal)}
+.cta-sec p{font-size:.88rem;line-height:1.7;color:rgba(245,240,232,.45);max-width:450px;margin:0 auto 2rem}
+.btn-teal{display:inline-flex;align-items:center;gap:.4rem;padding:.9rem 2rem;background:var(--teal);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;transition:all .35s}
+.btn-teal:hover{background:var(--teal-light)}
+
+.foot{padding:2rem 1.5rem;background:var(--dark);border-top:1px solid rgba(245,240,232,.06);display:flex;flex-direction:column;align-items:center;gap:.8rem;text-align:center}
+.foot-copy{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.2)}
+.foot-links{display:flex;gap:1.5rem}
+.foot-links a{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.3);transition:color .3s}
+.foot-links a:hover{color:var(--teal)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Home</a>
+  <a href="index.html" class="nav-logo">fabio nazzari<small>Pasticceria Iseo</small></a>
+</nav>
+
+<section class="hero">
+  <!-- STOCK: serve foto reale del negozio di Iseo -->
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=1400&q=80&auto=format&fit=crop" alt="Pasticceria Iseo"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><i></i> 03 — Negozio</div>
+    <h1>pasticceria<br><em>iseo</em></h1>
+    <p class="hero-sub">Il nostro punto vendita nel cuore della Franciacorta. Vieni a scoprire tutta la pasticceria Fabio Nazzari e Officina Intollerante.</p>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="intro-text">
+    <div class="sec-label"><i></i> Il negozio</div>
+    <p>La <strong>Pasticceria Iseo</strong> è il luogo dove tutta la nostra produzione prende vita e incontra il pubblico. Qui trovi l'intera gamma dei prodotti Officina Intollerante — dal croissant del mattino ai lievitati delle feste.</p>
+    <p>Siamo a Iseo, sulle sponde del lago, nel cuore della <strong>Franciacorta</strong>.</p>
+  </div>
+</section>
+
+<section class="info-sec">
+  <div class="info-grid">
+    <div class="icard">
+      <div class="icard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+      <h3>Orari</h3>
+      <p>Martedì — Sabato: 7:30 — 19:00<br>Domenica: 8:00 — 13:00<br>Lunedì: chiuso</p>
+    </div>
+    <div class="icard">
+      <div class="icard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <h3>Dove siamo</h3>
+      <p>Via Giardini Garibaldi, 3e<br>25049 Iseo (BS), Lombardia<br><a href="https://maps.google.com/maps?q=Via+Giardini+Garibaldi+3e+25049+Iseo+BS" target="_blank">Apri in Google Maps →</a></p>
+    </div>
+    <div class="icard">
+      <div class="icard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+      <h3>Contatti</h3>
+      <p>Tel: <a href="tel:+390308364644">030 836 4644</a><br>Email: <a href="mailto:info@fabionazzari.it">info@fabionazzari.it</a><br>Instagram: <a href="https://instagram.com/fabionazzari" target="_blank">@fabionazzari</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="map-sec">
+  <div class="sec-label"><i></i> Location</div>
+  <h2>Vieni a trovarci</h2>
+  <div class="map-sub">Via Giardini Garibaldi, 3e — 25049 Iseo (BS)</div>
+  <div class="map-frame">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.5!2d10.0488!3d45.6610!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zVmlhIEdpYXJkaW5pIEdhcmliYWxkaSAzZSwgMjUwNDkgSXNlbyBCUw!5e0!3m2!1sit!2sit!4v1" allowfullscreen loading="lazy"></iframe>
+  </div>
+</section>
+
+<section class="gallery">
+  <h2>dal nostro banco</h2>
+  <div class="gal-track">
+    <div class="gal-card"><img src="public/images/products/croissant.jpeg" alt="Croissant"></div>
+    <div class="gal-card"><img src="public/images/products/crostata-pistacchio.jpeg" alt="Crostata Pistacchio"></div>
+    <div class="gal-card"><img src="public/images/products/mignon-collection.jpeg" alt="Mignon"></div>
+    <div class="gal-card"><img src="public/images/products/torta-frutti-bosco.jpeg" alt="Torta"></div>
+    <div class="gal-card"><img src="public/images/products/plumcake-nocciole.jpeg" alt="Plumcake"></div>
+    <div class="gal-card"><img src="public/images/products/crostata-panna-cotta.jpeg" alt="Crostata"></div>
+  </div>
+</section>
+
+<section class="cta-sec">
+  <h2>Ti aspettiamo<br>a <em>Iseo</em></h2>
+  <p>Passa a trovarci per scoprire la nostra pasticceria. Prenota torte e prodotti speciali con almeno 48 ore di anticipo.</p>
+  <a href="tel:+390308364644" class="btn-teal">Chiamaci</a>
+</section>
+
+<footer class="foot">
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="consulenza.html">Consulenza</a>
+    <a href="officina.html">Officina</a>
+  </div>
+  <div class="foot-copy">&copy; 2026 Fabio Nazzari — Tutti i diritti riservati</div>
+</footer>
+</body>
+</html>

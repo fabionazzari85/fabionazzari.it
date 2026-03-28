@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Officina Intollerante — Shop Gluten Free</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-family:'DM Sans',system-ui,sans-serif;scroll-behavior:smooth}
+body{background:#F5F0E8;color:#1A1A1A;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(245,183,49,.3)}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+:root{--gold:#C9A84C;--dark:#1A1A1A;--dark2:#222;--dark3:#2a2a2a;--cream:#F5F0E8;--amber:#F5B731;--amber-light:#F7C853;--amber-dark:#D9A01E}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(245,240,232,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.nav-logo{font-size:.9rem;font-weight:800;letter-spacing:.02em;text-transform:lowercase;color:var(--dark)}
+.nav-logo small{display:block;font-size:.42rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;opacity:.35;margin-top:1px}
+.nav-back{display:flex;align-items:center;gap:.4rem;font-size:.55rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-dark);transition:gap .3s}
+.nav-back:hover{gap:.6rem}
+.nav-back svg{width:14px;height:14px}
+.nav-cart{position:relative;display:flex;align-items:center;gap:.3rem;font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-dark);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nav-cart svg{width:18px;height:18px}
+.cart-count{position:absolute;top:-5px;right:-8px;background:var(--amber);color:var(--dark);font-size:.45rem;font-weight:800;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0);transition:all .3s}
+.cart-count.show{opacity:1;transform:scale(1)}
+@media(min-width:768px){.nav{padding:1rem 2.5rem}.nav-logo{font-size:1rem}}
+
+/* HERO compact */
+.hero{position:relative;min-height:55vh;display:flex;align-items:flex-end;overflow:hidden;background:#000}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{opacity:.55}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(245,240,232,1) 0%,rgba(26,26,26,.3) 40%,rgba(0,0,0,.1) 100%)}
+.hero-inner{position:relative;z-index:2;padding:5rem 1.5rem 2rem;color:var(--cream);width:100%}
+.hero-tag{display:flex;align-items:center;gap:.6rem;font-size:.5rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:.8rem}
+.hero-tag i{width:20px;height:1px;background:var(--amber)}
+.hero h1{font-size:clamp(1.8rem,6vw,3.2rem);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:.8rem}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero-sub{font-size:clamp(.8rem,2vw,.95rem);font-weight:300;line-height:1.7;color:rgba(245,240,232,.5);max-width:450px}
+@media(min-width:768px){.hero{min-height:60vh}.hero-inner{padding:6rem 4rem 3rem;max-width:700px}}
+
+/* FILTER BAR */
+.filters{padding:1.5rem 1.5rem .5rem;display:flex;gap:.5rem;flex-wrap:wrap;background:#F5F0E8}
+.fil-btn{padding:.5rem 1rem;font-family:'DM Sans',sans-serif;font-size:.5rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(26,26,26,.12);background:transparent;color:rgba(26,26,26,.4);cursor:pointer;transition:all .3s;-webkit-tap-highlight-color:transparent}
+.fil-btn.active,.fil-btn:hover{border-color:var(--amber-dark);color:var(--amber-dark);background:rgba(245,183,49,.1)}
+@media(min-width:768px){.filters{padding:2rem 4rem .5rem}}
+
+/* PRODUCT GRID */
+.shop{padding:1rem 1.5rem 3rem;background:#F5F0E8}
+.shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+@media(min-width:768px){.shop{padding:1rem 4rem 5rem;max-width:1200px;margin:0 auto}.shop-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
+@media(min-width:1024px){.shop-grid{grid-template-columns:repeat(4,1fr)}}
+
+.pcard{background:#fff;overflow:hidden;transition:transform .3s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.pcard:active{transform:scale(.98)}
+@media(min-width:768px){.pcard:hover{transform:translateY(-4px)}}
+.pc-img{aspect-ratio:3/4;overflow:hidden;position:relative}
+.pc-img img{transition:transform .5s ease}
+@media(min-width:768px){.pcard:hover .pc-img img{transform:scale(1.05)}}
+.pc-badge{position:absolute;top:.6rem;left:.6rem;font-size:.4rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .6rem;background:var(--amber);color:var(--dark);z-index:1}
+.pc-info{padding:1rem}
+.pc-name{font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:.15rem}
+.pc-cat{font-size:.45rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber-dark);opacity:.7;margin-bottom:.6rem}
+.pc-desc{font-size:.72rem;line-height:1.5;color:rgba(26,26,26,.45);margin-bottom:.8rem}
+.pc-bottom{display:flex;align-items:center;justify-content:space-between}
+.pc-price{font-size:1rem;font-weight:900;color:var(--dark)}
+.pc-price small{font-size:.55rem;font-weight:400;color:rgba(245,240,232,.3);margin-left:.15rem}
+.btn-add{width:32px;height:32px;border:1px solid rgba(217,160,30,.35);background:transparent;color:var(--amber-dark);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;-webkit-tap-highlight-color:transparent}
+.btn-add:hover,.btn-add:active{background:var(--amber);color:#fff;border-color:var(--amber)}
+.btn-add svg{width:14px;height:14px}
+.btn-add.added{background:var(--amber);color:var(--dark);border-color:var(--amber)}
+
+/* CART DRAWER */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
+.cart-overlay.open{opacity:1;pointer-events:auto}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:90vw;max-width:380px;background:var(--dark2);z-index:201;transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
+.cart-drawer.open{transform:translateX(0)}
+.cart-top{padding:1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(245,240,232,.06)}
+.cart-top h3{font-size:1rem;font-weight:800}
+.cart-close{width:32px;height:32px;border:1px solid rgba(245,240,232,.1);background:transparent;color:var(--cream);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.cart-close svg{width:14px;height:14px}
+.cart-items{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.cart-empty{text-align:center;padding:3rem 1rem;color:rgba(245,240,232,.25);font-size:.85rem}
+.ci{display:flex;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(245,240,232,.04)}
+.ci-img{width:56px;height:56px;flex-shrink:0;overflow:hidden;background:var(--dark3)}
+.ci-info{flex:1}
+.ci-name{font-size:.78rem;font-weight:700;color:var(--cream);margin-bottom:.15rem}
+.ci-price{font-size:.7rem;color:var(--amber)}
+.ci-qty{display:flex;align-items:center;gap:.5rem;margin-top:.3rem}
+.ci-qty button{width:22px;height:22px;border:1px solid rgba(245,240,232,.1);background:transparent;color:var(--cream);font-size:.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.ci-qty span{font-size:.75rem;font-weight:700;min-width:16px;text-align:center}
+.ci-remove{font-size:.45rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.2);cursor:pointer;margin-top:.3rem;transition:color .2s}
+.ci-remove:hover{color:#e55}
+.cart-footer{padding:1.5rem;border-top:1px solid rgba(245,240,232,.06)}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.cart-total span{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.3)}
+.cart-total strong{font-size:1.2rem;font-weight:900;color:var(--cream)}
+.btn-checkout{width:100%;padding:1rem;background:var(--amber);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s;text-align:center}
+.btn-checkout:hover{background:var(--amber-light)}
+
+/* B2B BANNER */
+.b2b{padding:3rem 1.5rem;background:var(--dark);border-top:1px solid rgba(245,183,49,.06);text-align:center}
+.b2b h2{font-size:clamp(1.3rem,4vw,2rem);font-weight:900;color:var(--cream);line-height:1.12;margin-bottom:.6rem}
+.b2b h2 em{font-style:normal;color:var(--amber)}
+.b2b p{font-size:.85rem;line-height:1.7;color:rgba(245,240,232,.4);max-width:400px;margin:0 auto 1.5rem}
+.btn-amber{display:inline-flex;align-items:center;gap:.4rem;padding:.9rem 2rem;background:var(--amber);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;transition:all .35s}
+.btn-amber:hover{background:var(--amber-light)}
+@media(min-width:768px){.b2b{padding:4rem}}
+
+/* FOOTER */
+.foot{padding:2rem 1.5rem;background:var(--dark);border-top:1px solid rgba(245,240,232,.04);display:flex;flex-direction:column;align-items:center;gap:.8rem;text-align:center}
+.foot-copy{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.15)}
+.foot-links{display:flex;gap:1.5rem}
+.foot-links a{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.25);transition:color .3s}
+.foot-links a:hover{color:var(--amber)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Home</a>
+  <a href="index.html" class="nav-logo">fabio nazzari<small>Officina Intollerante</small></a>
+  <div class="nav-cart" onclick="toggleCart()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <!-- STOCK: serve foto del laboratorio Officina Intollerante -->
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1400&q=80&auto=format&fit=crop" alt="Officina Intollerante"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><i></i> 02 — Shop</div>
+    <h1>officina<br><em>intollerante</em></h1>
+    <p class="hero-sub">Pasticceria artigianale 100% gluten-free. Produzione limitata, qualità senza compromessi.</p>
+  </div>
+</section>
+
+<!-- Filtri -->
+<div class="filters">
+  <button class="fil-btn active" data-cat="all">Tutti</button>
+  <button class="fil-btn" data-cat="lievitati">Lievitati</button>
+  <button class="fil-btn" data-cat="biscotti">Biscotti</button>
+  <button class="fil-btn" data-cat="creme">Creme</button>
+  <button class="fil-btn" data-cat="salati">Salati</button>
+  <button class="fil-btn" data-cat="torte">Torte</button>
+  <button class="fil-btn" data-cat="monoporzioni">Monoporzioni</button>
+</div>
+
+<!-- Griglia prodotti -->
+<section class="shop">
+  <div class="shop-grid" id="shopGrid">
+
+    <div class="pcard" data-cat="lievitati"><div class="pc-img"><span class="pc-badge">Pasqua</span><img src="public/images/products/colomba.jpeg" alt="Colomba Classica"></div><div class="pc-info"><div class="pc-name">Colomba Classica</div><div class="pc-cat">lievitati</div><div class="pc-desc">Lievito madre, mandorle e canditi d'arancia. Lievitazione naturale 72h, 100% gluten free</div><div class="pc-bottom"><div class="pc-price">&euro; 22,00</div><button class="btn-add" onclick="addToCart(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="lievitati"><div class="pc-img"><span class="pc-badge">Pasqua</span><img src="public/images/products/tarta-cioccolato.jpeg" alt="Colomba 100% Cioccolato"></div><div class="pc-info"><div class="pc-name">Colomba 100% Cioccolato</div><div class="pc-cat">lievitati</div><div class="pc-desc">Impasto al cacao, gocce di cioccolato fondente e copertura dark</div><div class="pc-bottom"><div class="pc-price">&euro; 22,00</div><button class="btn-add" onclick="addToCart(2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="lievitati"><div class="pc-img"><span class="pc-badge">Limited</span><img src="public/images/products/cioccolato-bianco.jpeg" alt="Colomba Nuvola"></div><div class="pc-info"><div class="pc-name">Colomba Nuvola</div><div class="pc-cat">lievitati</div><div class="pc-desc">La nostra colomba premium: sofficita estrema, glassa artigianale e mandorle di Avola</div><div class="pc-bottom"><div class="pc-price">&euro; 28,00</div><button class="btn-add" onclick="addToCart(3)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="lievitati"><div class="pc-img"><img src="public/images/products/plumcake-nocciole.jpeg" alt="Bauletto Classico"></div><div class="pc-info"><div class="pc-name">Bauletto Classico</div><div class="pc-cat">lievitati</div><div class="pc-desc">Il nostro lievitato signature in formato mini. Perfetto per la colazione o come regalo</div><div class="pc-bottom"><div class="pc-price">&euro; 14,50</div><button class="btn-add" onclick="addToCart(4)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="lievitati"><div class="pc-img"><img src="public/images/products/sacher.jpeg" alt="Bauletto Cioccolato"></div><div class="pc-info"><div class="pc-name">Bauletto Cioccolato</div><div class="pc-cat">lievitati</div><div class="pc-desc">Bauletto con impasto al cacao e gocce di cioccolato fondente Valrhona</div><div class="pc-bottom"><div class="pc-price">&euro; 16,00</div><button class="btn-add" onclick="addToCart(5)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="biscotti"><div class="pc-img"><span class="pc-badge">Best Seller</span><img src="public/images/products/cookies.jpeg" alt="American Cookies x4"></div><div class="pc-info"><div class="pc-name">American Cookies x4</div><div class="pc-cat">biscotti</div><div class="pc-desc">4 cookies artigianali: croccanti fuori, morbidi dentro. Cioccolato fondente e fior di sale</div><div class="pc-bottom"><div class="pc-price">&euro; 14,00</div><button class="btn-add" onclick="addToCart(6)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="biscotti"><div class="pc-img"><img src="public/images/products/mignon-collection.jpeg" alt="American Cookies x8"></div><div class="pc-info"><div class="pc-name">American Cookies x8</div><div class="pc-cat">biscotti</div><div class="pc-desc">Box da 8 cookies assortiti: cioccolato fondente, cioccolato bianco e nocciole</div><div class="pc-bottom"><div class="pc-price">&euro; 20,00</div><button class="btn-add" onclick="addToCart(7)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="creme"><div class="pc-img"><span class="pc-badge">Novita</span><img src="public/images/products/monoporzione-limone.jpeg" alt="Crema Spalmabile al Caramello"></div><div class="pc-info"><div class="pc-name">Crema Spalmabile al Caramello</div><div class="pc-cat">creme</div><div class="pc-desc">Caramello salato artigianale, senza glutine. Perfetta su pane, croissant o al cucchiaio</div><div class="pc-bottom"><div class="pc-price">&euro; 8,00</div><button class="btn-add" onclick="addToCart(8)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="salati"><div class="pc-img"><span class="pc-badge">da &euro;2,85</span><img src="public/images/products/croissant.jpeg" alt="Grissini Artigianali"></div><div class="pc-info"><div class="pc-name">Grissini Artigianali</div><div class="pc-cat">salati</div><div class="pc-desc">Grissini croccanti 100% gluten free. Farina di riso e mais, lavorazione a mano</div><div class="pc-bottom"><div class="pc-price">&euro; 2,85</div><button class="btn-add" onclick="addToCart(9)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="salati"><div class="pc-img"><img src="public/images/products/croissant.jpeg" alt="Grissini Box da 6"></div><div class="pc-info"><div class="pc-name">Grissini Box da 6</div><div class="pc-cat">salati</div><div class="pc-desc">Confezione da 6 pacchetti di grissini. Ideale per ristorazione e uso quotidiano</div><div class="pc-bottom"><div class="pc-price">&euro; 12,50</div><button class="btn-add" onclick="addToCart(10)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="lievitati"><div class="pc-img"><span class="pc-badge">Solo in negozio</span><img src="public/images/products/croissant.jpeg" alt="Croissant"></div><div class="pc-info"><div class="pc-name">Croissant</div><div class="pc-cat">lievitati</div><div class="pc-desc">Sfogliatura classica a mano, burro premium. La nostra sfida GF piu ambiziosa</div><div class="pc-bottom"><div class="pc-price">&euro; 3,50</div><button class="btn-add" onclick="addToCart(11)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="torte"><div class="pc-img"><span class="pc-badge">Solo in negozio</span><img src="public/images/products/crostata-pistacchio.jpeg" alt="Crostata Pistacchio"></div><div class="pc-info"><div class="pc-name">Crostata Pistacchio</div><div class="pc-cat">torte</div><div class="pc-desc">Frolla GF con crema al pistacchio di Bronte e lamponi freschi</div><div class="pc-bottom"><div class="pc-price">&euro; 20,00</div><button class="btn-add" onclick="addToCart(12)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="torte"><div class="pc-img"><span class="pc-badge">Solo in negozio</span><img src="public/images/products/crostata-panna-cotta.jpeg" alt="Crostata Panna Cotta"></div><div class="pc-info"><div class="pc-name">Crostata Panna Cotta</div><div class="pc-cat">torte</div><div class="pc-desc">Panna cotta su frolla friabile con coulis di frutti di bosco</div><div class="pc-bottom"><div class="pc-price">&euro; 18,00</div><button class="btn-add" onclick="addToCart(13)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="monoporzioni"><div class="pc-img"><img src="public/images/products/monoporzione-limone.jpeg" alt="Monoporzione Limone"></div><div class="pc-info"><div class="pc-name">Monoporzione Limone</div><div class="pc-cat">monoporzioni</div><div class="pc-desc">Mousse al limone di Amalfi su base biscotto croccante</div><div class="pc-bottom"><div class="pc-price">&euro; 6,50</div><button class="btn-add" onclick="addToCart(14)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="monoporzioni"><div class="pc-img"><img src="public/images/products/monoporzione-frutti-rossi.jpeg" alt="Monoporzione Frutti Rossi"></div><div class="pc-info"><div class="pc-name">Monoporzione Frutti Rossi</div><div class="pc-cat">monoporzioni</div><div class="pc-desc">Crema diplomatica con frutti rossi freschi di stagione</div><div class="pc-bottom"><div class="pc-price">&euro; 6,50</div><button class="btn-add" onclick="addToCart(15)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="monoporzioni"><div class="pc-img"><img src="public/images/products/monopozione-cioccolato.jpeg" alt="Monoporzione Cioccolato"></div><div class="pc-info"><div class="pc-name">Monoporzione Cioccolato</div><div class="pc-cat">monoporzioni</div><div class="pc-desc">Fondente Valrhona 72% con cuore morbido al caramello</div><div class="pc-bottom"><div class="pc-price">&euro; 6,50</div><button class="btn-add" onclick="addToCart(16)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+    <div class="pcard" data-cat="torte"><div class="pc-img"><img src="public/images/products/torta-frutti-bosco.jpeg" alt="Torta Frutti di Bosco"></div><div class="pc-info"><div class="pc-name">Torta Frutti di Bosco</div><div class="pc-cat">torte</div><div class="pc-desc">Base soffice, mousse alla vaniglia e frutti di bosco con glassa lavanda</div><div class="pc-bottom"><div class="pc-price">&euro; 26,00</div><button class="btn-add" onclick="addToCart(17)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></div>
+
+  </div>
+</section>
+
+<!-- B2B Banner -->
+<section class="b2b">
+  <h2>Sei un <em>professionista?</em></h2>
+  <p>Listino dedicato per ristoranti, hotel e pasticcerie. Contattaci per condizioni di fornitura B2B.</p>
+  <a href="index.html#contatti" class="btn-amber">Richiedi listino B2B</a>
+</section>
+
+<!-- Cart Overlay & Drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-top">
+    <h3>Il tuo carrello</h3>
+    <button class="cart-close" onclick="toggleCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">Il carrello è vuoto</div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total"><span>Totale</span><strong id="cartTotal">€ 0,00</strong></div>
+    <button class="btn-checkout" onclick="checkout()">Procedi all'ordine</button>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="consulenza.html">Consulenza</a>
+    <a href="negozio.html">Negozio</a>
+  </div>
+  <div class="foot-copy">&copy; 2026 Fabio Nazzari — Tutti i diritti riservati</div>
+</footer>
+
+<script>
+// === PRODUCT DATA ===
+var products=[
+  // === PRODOTTI REALI DA OFFICINAINTOLLERANTE.IT ===
+  {id:1,name:"Colomba Classica",cat:"lievitati",price:22.00,img:"public/images/products/colomba.jpeg",desc:"Lievito madre, mandorle e canditi d'arancia. Lievitazione naturale 72h, 100% gluten free",badge:"Pasqua"},
+  {id:2,name:"Colomba 100% Cioccolato",cat:"lievitati",price:22.00,img:"public/images/products/tarta-cioccolato.jpeg",desc:"Impasto al cacao, gocce di cioccolato fondente e copertura dark. Per i veri amanti del cioccolato",badge:"Pasqua"},
+  {id:3,name:"Colomba Nuvola",cat:"lievitati",price:28.00,img:"public/images/products/cioccolato-bianco.jpeg",desc:"La nostra colomba premium: sofficità estrema, glassa artigianale e mandorle di Avola",badge:"Limited"},
+  {id:4,name:"Bauletto Classico",cat:"lievitati",price:14.50,img:"public/images/products/plumcake-nocciole.jpeg",desc:"Il nostro lievitato signature in formato mini. Perfetto per la colazione o come regalo"},
+  {id:5,name:"Bauletto Cioccolato",cat:"lievitati",price:16.00,img:"public/images/products/sacher.jpeg",desc:"Bauletto con impasto al cacao e gocce di cioccolato fondente Valrhona"},
+  {id:6,name:"American Cookies x4",cat:"biscotti",price:14.00,img:"public/images/products/cookies.jpeg",desc:"4 cookies artigianali: croccanti fuori, morbidi dentro. Cioccolato fondente e fior di sale",badge:"Best Seller"},
+  {id:7,name:"American Cookies x8",cat:"biscotti",price:20.00,img:"public/images/products/mignon-collection.jpeg",desc:"Box da 8 cookies assortiti: cioccolato fondente, cioccolato bianco e nocciole"},
+  {id:8,name:"Crema Spalmabile al Caramello",cat:"creme",price:8.00,img:"public/images/products/monoporzione-limone.jpeg",desc:"Caramello salato artigianale, senza glutine. Perfetta su pane, croissant o al cucchiaio",badge:"Novità"},
+  {id:9,name:"Grissini Artigianali",cat:"salati",price:2.85,img:"public/images/products/croissant.jpeg",desc:"Grissini croccanti 100% gluten free. Farina di riso e mais, lavorazione a mano",badge:"da €2,85"},
+  {id:10,name:"Grissini Box da 6",cat:"salati",price:12.50,img:"public/images/products/croissant.jpeg",desc:"Confezione da 6 pacchetti di grissini. Ideale per ristorazione e uso quotidiano"},
+  // === VETRINA LABORATORIO ===
+  {id:11,name:"Croissant",cat:"lievitati",price:3.50,img:"public/images/products/croissant.jpeg",desc:"Sfogliatura classica a mano, burro premium. La nostra sfida GF più ambiziosa",badge:"Solo in negozio"},
+  {id:12,name:"Crostata Pistacchio",cat:"torte",price:20.00,img:"public/images/products/crostata-pistacchio.jpeg",desc:"Frolla GF con crema al pistacchio di Bronte e lamponi freschi",badge:"Solo in negozio"},
+  {id:13,name:"Crostata Panna Cotta",cat:"torte",price:18.00,img:"public/images/products/crostata-panna-cotta.jpeg",desc:"Panna cotta su frolla friabile con coulis di frutti di bosco",badge:"Solo in negozio"},
+  {id:14,name:"Monoporzione Limone",cat:"monoporzioni",price:6.50,img:"public/images/products/monoporzione-limone.jpeg",desc:"Mousse al limone di Amalfi su base biscotto croccante"},
+  {id:15,name:"Monoporzione Frutti Rossi",cat:"monoporzioni",price:6.50,img:"public/images/products/monoporzione-frutti-rossi.jpeg",desc:"Crema diplomatica con frutti rossi freschi di stagione"},
+  {id:16,name:"Monoporzione Cioccolato",cat:"monoporzioni",price:6.50,img:"public/images/products/monopozione-cioccolato.jpeg",desc:"Fondente Valrhona 72% con cuore morbido al caramello"},
+  {id:17,name:"Torta Frutti di Bosco",cat:"torte",price:26.00,img:"public/images/products/torta-frutti-bosco.jpeg",desc:"Base soffice, mousse alla vaniglia e frutti di bosco con glassa lavanda"},
+];
+
+var cart=[];
+
+// FILTER PRODUCTS (show/hide static HTML cards)
+function filterProducts(filter){
+  var cards=document.querySelectorAll('#shopGrid .pcard');
+  cards.forEach(function(card){
+    if(filter==='all'||card.dataset.cat===filter){card.style.display=''}
+    else{card.style.display='none'}
+  });
+}
+
+// FILTERS
+document.querySelectorAll('.fil-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.fil-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    filterProducts(btn.dataset.cat);
+  });
+});
+
+// ADD TO CART
+function addToCart(id){
+  var item=cart.find(function(c){return c.id===id});
+  if(item){item.qty++}
+  else{var prod=products.find(function(p){return p.id===id});cart.push({id:prod.id,name:prod.name,price:prod.price,img:prod.img,qty:1})}
+  updateCart();
+  updateCart();
+}
+
+// UPDATE CART UI
+function updateCart(){
+  var countEl=document.getElementById('cartCount');
+  var itemsEl=document.getElementById('cartItems');
+  var totalEl=document.getElementById('cartTotal');
+  var total=cart.reduce(function(s,c){return s+c.price*c.qty},0);
+  var count=cart.reduce(function(s,c){return s+c.qty},0);
+  countEl.textContent=count;
+  countEl.classList.toggle('show',count>0);
+  totalEl.textContent='€ '+total.toFixed(2).replace('.',',');
+  if(cart.length===0){itemsEl.innerHTML='<div class="cart-empty">Il carrello è vuoto</div>';return}
+  itemsEl.innerHTML=cart.map(function(c){
+    return '<div class="ci"><div class="ci-img"><img src="'+c.img+'" alt="'+c.name+'"></div>'
+      +'<div class="ci-info"><div class="ci-name">'+c.name+'</div>'
+      +'<div class="ci-price">&euro; '+(c.price*c.qty).toFixed(2).replace('.',',')+'</div>'
+      +'<div class="ci-qty"><button onclick="changeQty('+c.id+',-1)">-</button><span>'+c.qty+'</span><button onclick="changeQty('+c.id+',1)">+</button></div>'
+      +'<div class="ci-remove" onclick="removeFromCart('+c.id+')">Rimuovi</div></div></div>';
+  }).join('');
+}
+
+function changeQty(id,d){
+  var item=cart.find(function(c){return c.id===id});
+  if(item){item.qty+=d;if(item.qty<=0)removeFromCart(id);else updateCart()}
+}
+
+function removeFromCart(id){
+  cart=cart.filter(function(c){return c.id!==id});
+  updateCart();
+}
+
+function toggleCart(){
+  document.getElementById('cartOverlay').classList.toggle('open');
+  document.getElementById('cartDrawer').classList.toggle('open');
+}
+
+function checkout(){
+  if(cart.length===0)return;
+  var msg='Ciao, vorrei ordinare:%0A';
+  cart.forEach(function(c){msg+=c.qty+'x '+c.name+' (€'+c.price.toFixed(2).replace('.',',')+')%0A'});
+  var total=cart.reduce(function(s,c){return s+c.price*c.qty},0);
+  msg+='%0ATotale: €'+total.toFixed(2).replace('.',',')+' %0A%0AGrazie!';
+  window.location.href='mailto:info@fabionazzari.it?subject=Ordine Officina Intollerante&body='+msg;
+}
+
+// Init — products are already in static HTML, no render needed
+</script>
+</body>
+</html>
