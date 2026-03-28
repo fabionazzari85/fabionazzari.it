@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="DM Sans, system-ui, sans-serif">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#E8E2D6" stroke-width="0.5"/>
+    </pattern>
+    <style>
+      .wall{fill:none;stroke:#7A7550;stroke-width:3}
+      .wall-inner{fill:none;stroke:#9B956A;stroke-width:1.5;stroke-dasharray:6,3}
+      .zone{rx:4;ry:4;opacity:.18}
+      .label{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;fill:#7A7550}
+      .sublabel{font-size:7px;font-weight:400;fill:#9B956A;letter-spacing:.05em}
+      .equip{fill:#fff;stroke:#B0AB82;stroke-width:1.2;rx:3;ry:3}
+      .equip-label{font-size:6.5px;fill:#7A7550;text-anchor:middle;font-weight:500}
+      .door{fill:none;stroke:#C9A84C;stroke-width:2}
+      .arrow{fill:none;stroke:#C9A84C;stroke-width:1.2;marker-end:url(#arrowhead)}
+      .flow-label{font-size:6px;fill:#C9A84C;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+      .dim{font-size:6px;fill:#B0AB82;text-anchor:middle}
+      .title{font-size:14px;font-weight:900;fill:#1A1A1A;letter-spacing:-.02em}
+      .subtitle{font-size:8px;font-weight:400;fill:#9B956A;letter-spacing:.15em;text-transform:uppercase}
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#C9A84C" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#F5F0E8"/>
+  <rect x="60" y="70" width="680" height="460" fill="url(#grid)"/>
+
+  <!-- Title block -->
+  <text x="60" y="42" class="title">Laboratorio 100% Gluten-Free</text>
+  <text x="60" y="56" class="subtitle">Planimetria indicativa — Layout tipo</text>
+  <text x="740" y="42" text-anchor="end" style="font-size:7px;fill:#B0AB82;letter-spacing:.1em;text-transform:uppercase">Fabio Nazzari Consulting</text>
+  <text x="740" y="54" text-anchor="end" style="font-size:6px;fill:#C9A84C">fabionazzari.it</text>
+
+  <!-- Outer walls -->
+  <rect x="60" y="70" width="680" height="460" class="wall"/>
+
+  <!-- ZONE 1: Ricevimento merci / Stoccaggio (top-left) -->
+  <rect x="62" y="72" width="200" height="180" fill="#C9A84C" class="zone"/>
+  <text x="162" y="92" class="label" text-anchor="middle">Stoccaggio</text>
+  <text x="162" y="104" class="sublabel" text-anchor="middle">Ricevimento merci &amp; materie prime</text>
+  <!-- Scaffali -->
+  <rect x="78" y="118" width="70" height="18" class="equip"/>
+  <text x="113" y="131" class="equip-label">Scaffali MP</text>
+  <rect x="78" y="144" width="70" height="18" class="equip"/>
+  <text x="113" y="157" class="equip-label">Scaffali farine GF</text>
+  <rect x="78" y="170" width="70" height="18" class="equip"/>
+  <text x="113" y="183" class="equip-label">Cella frigo</text>
+  <!-- Bilancia / controllo -->
+  <rect x="168" y="118" width="76" height="30" class="equip"/>
+  <text x="206" y="137" class="equip-label">Controllo qualità</text>
+  <rect x="168" y="158" width="76" height="30" class="equip"/>
+  <text x="206" y="177" class="equip-label">Bilance di precisione</text>
+
+  <!-- ZONE 2: Preparazione impasti (top-center) -->
+  <rect x="264" y="72" width="240" height="180" fill="#9B956A" class="zone"/>
+  <text x="384" y="92" class="label" text-anchor="middle">Preparazione Impasti</text>
+  <text x="384" y="104" class="sublabel" text-anchor="middle">Miscelazione &amp; lavorazione</text>
+  <!-- Impastatrici -->
+  <rect x="280" y="118" width="60" height="45" class="equip"/>
+  <text x="310" y="140" class="equip-label">Impastatrice</text>
+  <text x="310" y="149" class="equip-label">planetaria</text>
+  <rect x="350" y="118" width="60" height="45" class="equip"/>
+  <text x="380" y="140" class="equip-label">Impastatrice</text>
+  <text x="380" y="149" class="equip-label">a spirale</text>
+  <!-- Piano di lavoro -->
+  <rect x="280" y="175" width="210" height="30" class="equip"/>
+  <text x="385" y="194" class="equip-label">Piano di lavoro in acciaio inox — Formatura</text>
+  <!-- Sfogliatrice -->
+  <rect x="420" y="118" width="72" height="45" class="equip"/>
+  <text x="456" y="140" class="equip-label">Sfogliatrice</text>
+  <text x="456" y="149" class="equip-label">automatica</text>
+
+  <!-- ZONE 3: Cottura (top-right) -->
+  <rect x="506" y="72" width="232" height="180" fill="#C9A84C" class="zone"/>
+  <text x="622" y="92" class="label" text-anchor="middle">Cottura</text>
+  <text x="622" y="104" class="sublabel" text-anchor="middle">Forni &amp; lievitazione</text>
+  <!-- Forni -->
+  <rect x="522" y="118" width="90" height="55" class="equip"/>
+  <text x="567" y="143" class="equip-label">Forno rotativo</text>
+  <text x="567" y="153" class="equip-label">professionale</text>
+  <rect x="622" y="118" width="90" height="55" class="equip"/>
+  <text x="667" y="143" class="equip-label">Forno statico</text>
+  <text x="667" y="153" class="equip-label">a piani</text>
+  <!-- Cella di lievitazione -->
+  <rect x="522" y="183" width="100" height="30" class="equip"/>
+  <text x="572" y="202" class="equip-label">Cella di lievitazione</text>
+  <rect x="632" y="183" width="80" height="30" class="equip"/>
+  <text x="672" y="202" class="equip-label">Abbattitore</text>
+
+  <!-- ZONE 4: Decorazione & Finitura (bottom-left) -->
+  <rect x="62" y="254" width="250" height="168" fill="#9B956A" class="zone"/>
+  <text x="187" y="274" class="label" text-anchor="middle">Decorazione &amp; Finitura</text>
+  <text x="187" y="286" class="sublabel" text-anchor="middle">Farcitura, glassatura, assemblaggio</text>
+  <!-- Tavoli -->
+  <rect x="78" y="300" width="108" height="35" class="equip"/>
+  <text x="132" y="321" class="equip-label">Tavolo decorazione marmo</text>
+  <rect x="78" y="345" width="108" height="35" class="equip"/>
+  <text x="132" y="366" class="equip-label">Temperaggio cioccolato</text>
+  <rect x="198" y="300" width="96" height="80" class="equip"/>
+  <text x="246" y="338" class="equip-label">Banco</text>
+  <text x="246" y="349" class="equip-label">refrigerato</text>
+  <text x="246" y="360" class="equip-label">vetrina</text>
+
+  <!-- ZONE 5: Confezionamento (bottom-center) -->
+  <rect x="314" y="254" width="190" height="168" fill="#C9A84C" class="zone"/>
+  <text x="409" y="274" class="label" text-anchor="middle">Confezionamento</text>
+  <text x="409" y="286" class="sublabel" text-anchor="middle">Packaging &amp; etichettatura</text>
+  <rect x="330" y="300" width="80" height="40" class="equip"/>
+  <text x="370" y="322" class="equip-label">Confezionatrice</text>
+  <text x="370" y="332" class="equip-label">sottovuoto</text>
+  <rect x="330" y="350" width="80" height="35" class="equip"/>
+  <text x="370" y="371" class="equip-label">Etichettatrice</text>
+  <rect x="420" y="300" width="68" height="85" class="equip"/>
+  <text x="454" y="342" class="equip-label">Tavolo</text>
+  <text x="454" y="353" class="equip-label">packaging</text>
+
+  <!-- ZONE 6: Lavaggio & Servizi (bottom-right) -->
+  <rect x="506" y="254" width="232" height="168" fill="#9B956A" class="zone"/>
+  <text x="622" y="274" class="label" text-anchor="middle">Lavaggio &amp; Servizi</text>
+  <text x="622" y="286" class="sublabel" text-anchor="middle">Sanificazione &amp; utilities</text>
+  <rect x="522" y="300" width="90" height="40" class="equip"/>
+  <text x="567" y="322" class="equip-label">Lavastoviglie</text>
+  <text x="567" y="332" class="equip-label">industriale</text>
+  <rect x="622" y="300" width="90" height="40" class="equip"/>
+  <text x="667" y="322" class="equip-label">Lavello doppia</text>
+  <text x="667" y="332" class="equip-label">vasca inox</text>
+  <rect x="522" y="350" width="90" height="35" class="equip"/>
+  <text x="567" y="371" class="equip-label">Scaffali pulito</text>
+  <rect x="622" y="350" width="90" height="35" class="equip"/>
+  <text x="667" y="371" class="equip-label">Prodotti sanif.</text>
+
+  <!-- ZONE 7: Spogliatoio & Filtro (bottom strip) -->
+  <rect x="62" y="424" width="300" height="104" fill="#7A7550" class="zone" opacity=".12"/>
+  <text x="212" y="444" class="label" text-anchor="middle">Zona Filtro</text>
+  <text x="212" y="456" class="sublabel" text-anchor="middle">Spogliatoio, lavamani, ingresso controllato</text>
+  <rect x="78" y="468" width="70" height="40" class="equip"/>
+  <text x="113" y="490" class="equip-label">Spogliatoio</text>
+  <text x="113" y="500" class="equip-label">dedicato</text>
+  <rect x="160" y="468" width="60" height="40" class="equip"/>
+  <text x="190" y="490" class="equip-label">Lavamani</text>
+  <text x="190" y="500" class="equip-label">sanitario</text>
+  <rect x="232" y="468" width="110" height="40" class="equip"/>
+  <text x="287" y="490" class="equip-label">Filtro GF — verifica</text>
+  <text x="287" y="500" class="equip-label">assenza contaminanti</text>
+
+  <!-- ZONE 8: Ufficio HACCP (bottom-right strip) -->
+  <rect x="364" y="424" width="148" height="104" fill="#C9A84C" class="zone" opacity=".12"/>
+  <text x="438" y="444" class="label" text-anchor="middle">Ufficio HACCP</text>
+  <text x="438" y="456" class="sublabel" text-anchor="middle">Documentazione &amp; tracciabilità</text>
+  <rect x="380" y="468" width="116" height="40" class="equip"/>
+  <text x="438" y="490" class="equip-label">Postazione HACCP</text>
+  <text x="438" y="500" class="equip-label">+ archivio lotti</text>
+
+  <!-- ZONE 9: Spedizione (bottom-right corner) -->
+  <rect x="514" y="424" width="224" height="104" fill="#9B956A" class="zone" opacity=".12"/>
+  <text x="626" y="444" class="label" text-anchor="middle">Spedizione</text>
+  <text x="626" y="456" class="sublabel" text-anchor="middle">Uscita prodotti finiti</text>
+  <rect x="530" y="468" width="100" height="40" class="equip"/>
+  <text x="580" y="490" class="equip-label">Area stoccaggio</text>
+  <text x="580" y="500" class="equip-label">prodotti finiti</text>
+  <rect x="642" y="468" width="80" height="40" class="equip"/>
+  <text x="682" y="490" class="equip-label">Baia carico</text>
+  <text x="682" y="500" class="equip-label">spedizione</text>
+
+  <!-- Flow arrows -->
+  <path d="M 162 252 L 162 260 Q 162 268 170 268 L 182 268" class="arrow"/>
+  <path d="M 260 168 L 278 168" class="arrow"/>
+  <path d="M 502 168 L 520 168" class="arrow"/>
+  <path d="M 622 252 L 622 260 Q 622 268 614 268 L 500 268" class="arrow"/>
+  <path d="M 310 252 L 310 260 Q 310 268 318 268 L 328 268" class="arrow"/>
+  <path d="M 500 340 L 508 340" class="arrow"/>
+
+  <!-- Flow label -->
+  <text x="400" y="555" class="flow-label" text-anchor="middle">Flusso produttivo unidirezionale — zero contaminazione crociata</text>
+
+  <!-- Doors -->
+  <path d="M 60 460 Q 40 460 40 440" class="door"/>
+  <text x="36" y="465" style="font-size:5px;fill:#C9A84C;text-anchor:end">Ingresso</text>
+  <path d="M 740 460 Q 760 460 760 440" class="door"/>
+  <text x="764" y="465" style="font-size:5px;fill:#C9A84C">Uscita merci</text>
+
+  <!-- Legend -->
+  <rect x="60" y="565" width="10" height="10" fill="#C9A84C" opacity=".18" rx="2"/>
+  <text x="76" y="574" style="font-size:6.5px;fill:#7A7550">Zone calde / stoccaggio</text>
+  <rect x="190" y="565" width="10" height="10" fill="#9B956A" opacity=".18" rx="2"/>
+  <text x="206" y="574" style="font-size:6.5px;fill:#7A7550">Zone lavorazione</text>
+  <rect x="310" y="565" width="10" height="10" fill="#7A7550" opacity=".12" rx="2"/>
+  <text x="326" y="574" style="font-size:6.5px;fill:#7A7550">Servizi &amp; filtro</text>
+  <line x1="430" y1="570" x2="450" y2="570" stroke="#C9A84C" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <text x="458" y="574" style="font-size:6.5px;fill:#7A7550">Flusso produttivo</text>
+
+  <!-- GF Badge -->
+  <circle cx="720" cy="575" r="18" fill="none" stroke="#9B956A" stroke-width="1.5"/>
+  <text x="720" y="572" text-anchor="middle" style="font-size:7px;font-weight:900;fill:#7A7550">100%</text>
+  <text x="720" y="581" text-anchor="middle" style="font-size:5px;font-weight:700;fill:#9B956A;letter-spacing:.1em">GLUTEN FREE</text>
+</svg>
