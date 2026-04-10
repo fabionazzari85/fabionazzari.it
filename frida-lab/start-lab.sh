@@ -67,6 +67,7 @@ mitmweb \
     --web-host 0.0.0.0 \
     --web-port 8081 \
     --set console_eventlog_verbosity=warn \
+    -s "${SCRIPT_DIR}/scripts/cookie-logger.py" \
     > "$MITMPROXY_LOG" 2>&1 &
 
 MITM_PID=$!
@@ -96,6 +97,7 @@ log "  Web UI:     http://fridalab.local:8081"
 log "  oppure:     http://${PI_IP}:8081"
 log "  Cert CA:    http://mitm.it (dal telefono)"
 log "  Log:        ${MITMPROXY_LOG}"
+log "  Cookie log: ${SCRIPT_DIR}/logs/captured-cookies.json"
 echo ""
 log "Prossimi passi (dal Mac):"
 log "  1. Connetti il telefono all'hotspot FridaLab"
