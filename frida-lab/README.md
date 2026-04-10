@@ -282,6 +282,7 @@ sovrascrivendo le funzioni di verifica del certificato.
 |--------|-------------|
 | `scripts/bypass-android-pinning.js` | Bypass universale per Android (TrustManager, OkHttp, ecc.) |
 | `scripts/bypass-flutter-pinning.js` | Bypass specifico per app Flutter |
+| `scripts/frida-antidetect.js` | Anti-detection + anti-root + bypass avanzato (per app protette) |
 
 ### Utilizzo rapido
 
@@ -392,9 +393,10 @@ sudo systemctl restart dnsmasq
 
 ### L'app rileva il proxy/Frida
 Alcune app hanno protezioni anti-tampering. Soluzioni:
-- Usa lo script con **anti-detection** (nasconde la presenza di Frida)
+- Usa `scripts/frida-antidetect.js` — nasconde Frida + bypassa root detection
 - Prova **objection** che ha bypass piu' avanzati
 - Per app Flutter, usa lo script specifico `bypass-flutter-pinning.js`
+- Prova ad avviare l'app piu' volte — alcune detection sono basate su timing
 
 ---
 
