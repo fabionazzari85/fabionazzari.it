@@ -41,6 +41,7 @@ const getContentImage = (content = {}) => content.featuredImage || fallbackImage
 
 const normalizeRecipeContent = (content = {}) => {
   const type = content.type === "blog_article" ? "technical_article" : content.type || "guide";
+  const enabledSections = content.enabledSections || content.enabled_sections || content.extraFields?.enabledSections || {};
   const normalized = {
     ...content,
     id: content.id || content.slug,
@@ -86,6 +87,7 @@ const normalizeRecipeContent = (content = {}) => {
     secondaryCtaLabel: content.secondaryCtaLabel || "",
     secondaryCtaHref: content.secondaryCtaHref || "",
     blocks: asArray(content.blocks).filter((item) => item && item.type),
+    enabledSections,
     extraFields: content.extraFields || {}
   };
 
@@ -308,7 +310,16 @@ const renderListSection = (title, items, ordered = false) => {
   return `<h2>${escapeHtml(title)}</h2><${tag}>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</${tag}>`;
 };
 
-const renderArticleSections = (sections = []) => {
+const isSectionEnabled = (content, section) => {
+  const enabledSections = content.enabledSections || {};
+  return enabledSections[section] !== false;
+};
+
+const renderEnabledListSection = (content, section, title, items, ordered = false) =>
+  isSectionEnabled(content, section) ? renderListSection(title, items, ordered) : "";
+
+const renderArticleSections = (content, sections = []) => {
+  if (!isSectionEnabled(content, "articleSections")) return "";
   if (!sections.length) return "";
   return sections.map((section) => `
           <h2>${escapeHtml(section.title || "Approfondimento")}</h2>
@@ -316,9 +327,26 @@ const renderArticleSections = (sections = []) => {
           ${section.items?.length ? `<ul>${section.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}`).join("");
 };
 
-const renderBlocks = (blocks = []) => {
+const renderBlocks = (content, blocks = []) => {
+  if (!isSectionEnabled(content, "blocks")) return "";
   if (!blocks.length) return "";
-  const mappedBlockTypes = new Set(["intro", "ingredients", "method", "key_takeaways", "article_section", "conclusion"]);
+  const mappedBlockTypes = new Set([
+    "intro",
+    "ingredients",
+    "method",
+    "method_steps",
+    "key_takeaways",
+    "article_section",
+    "technical_notes",
+    "common_mistakes",
+    "conservation",
+    "variations",
+    "professional_tips",
+    "faq",
+    "recommended_products",
+    "sponsor_disclosure",
+    "conclusion"
+  ]);
   return blocks.map((block) => {
     if (mappedBlockTypes.has(block.type)) return "";
     const title = block.title || (block.type === "intro" ? "Introduzione" : "Approfondimento");
@@ -368,27 +396,27 @@ ${header}
         </aside>
         <div id="ricetta" class="recipe-prose max-w-3xl scroll-mt-28">
           <p class="text-xl text-[#3D3B35]">${escapeHtml(content.intro || content.excerpt)}</p>
-          ${renderListSection("Punti chiave", content.keyTakeaways)}
-          ${content.sponsorDisclosure ? `<div class="soft-card mt-8"><strong>Disclosure sponsor</strong><p>${escapeHtml(content.sponsorDisclosure)}</p></div>` : ""}
-          ${renderListSection(content.type === "recipe" ? "Ingredienti" : "Aree da controllare", content.ingredients)}
-          ${renderListSection(content.type === "recipe" ? "Procedimento" : "Checklist operativa", content.methodSteps, true)}
-          ${renderBlocks(content.blocks)}
-          ${renderArticleSections(content.articleSections)}
-          ${renderListSection("Note tecniche", content.technicalNotes)}
-          ${renderListSection("Errori comuni", content.commonMistakes)}
-          ${renderListSection("Conservazione", content.conservation)}
-          ${renderListSection("Varianti", content.variations)}
-          ${renderListSection("Consigli professionali", content.professionalTips)}
-          ${content.recommendedProducts?.length ? renderListSection("Prodotti consigliati", content.recommendedProducts) : ""}
-          ${content.conclusion ? `<h2>Conclusione</h2><p>${escapeHtml(content.conclusion)}</p>` : ""}
-          ${content.faq?.length ? `<h2>FAQ</h2><div class="space-y-4">${content.faq.map((item) => `<details class="soft-card"><summary class="cursor-pointer font-semibold">${escapeHtml(item.question)}</summary><p class="mt-3">${escapeHtml(item.answer)}</p></details>`).join("")}</div>` : ""}
+          ${renderEnabledListSection(content, "keyTakeaways", "Punti chiave", content.keyTakeaways)}
+          ${isSectionEnabled(content, "sponsorDisclosure") && content.sponsorDisclosure ? `<div class="soft-card mt-8"><strong>Disclosure sponsor</strong><p>${escapeHtml(content.sponsorDisclosure)}</p></div>` : ""}
+          ${renderEnabledListSection(content, "ingredients", content.type === "recipe" ? "Ingredienti" : "Aree da controllare", content.ingredients)}
+          ${renderEnabledListSection(content, "methodSteps", content.type === "recipe" ? "Procedimento" : "Checklist operativa", content.methodSteps, true)}
+          ${renderBlocks(content, content.blocks)}
+          ${renderArticleSections(content, content.articleSections)}
+          ${renderEnabledListSection(content, "technicalNotes", "Note tecniche", content.technicalNotes)}
+          ${renderEnabledListSection(content, "commonMistakes", "Errori comuni", content.commonMistakes)}
+          ${renderEnabledListSection(content, "conservation", "Conservazione", content.conservation)}
+          ${renderEnabledListSection(content, "variations", "Varianti", content.variations)}
+          ${renderEnabledListSection(content, "professionalTips", "Consigli professionali", content.professionalTips)}
+          ${isSectionEnabled(content, "recommendedProducts") && content.recommendedProducts?.length ? renderListSection("Prodotti consigliati", content.recommendedProducts) : ""}
+          ${isSectionEnabled(content, "conclusion") && content.conclusion ? `<h2>Conclusione</h2><p>${escapeHtml(content.conclusion)}</p>` : ""}
+          ${isSectionEnabled(content, "faq") && content.faq?.length ? `<h2>FAQ</h2><div class="space-y-4">${content.faq.map((item) => `<details class="soft-card"><summary class="cursor-pointer font-semibold">${escapeHtml(item.question)}</summary><p class="mt-3">${escapeHtml(item.answer)}</p></details>`).join("")}</div>` : ""}
           <div class="editorial-panel mt-14 bg-[#F3EEE6]">
             <p class="section-kicker mb-3">Prossimo passo</p>
             <h2 class="!mt-0 mb-4 text-3xl">Porta questa tecnica dentro il tuo progetto.</h2>
             <p class="mb-6 text-gray-600">Se stai costruendo una linea, un laboratorio o un'offerta gluten-free, il metodo conta piu della singola ricetta.</p>
             <div class="flex flex-col gap-3 sm:flex-row">
               <a class="btn" href="${escapeHtml(content.ctaHref)}">${escapeHtml(content.ctaLabel)}</a>
-              ${content.secondaryCtaLabel && content.secondaryCtaHref ? `<a class="btn !bg-white !text-[#1A1A18] border border-black/10 hover:!bg-[#F3EEE6]" href="${escapeHtml(content.secondaryCtaHref)}">${escapeHtml(content.secondaryCtaLabel)}</a>` : ""}
+              ${isSectionEnabled(content, "secondaryCta") && content.secondaryCtaLabel && content.secondaryCtaHref ? `<a class="btn !bg-white !text-[#1A1A18] border border-black/10 hover:!bg-[#F3EEE6]" href="${escapeHtml(content.secondaryCtaHref)}">${escapeHtml(content.secondaryCtaLabel)}</a>` : ""}
             </div>
           </div>
         </div>

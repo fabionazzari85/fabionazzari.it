@@ -1179,7 +1179,8 @@ const OG_LOCALE_CODES = {
 };
 const OFFICINA_SHOP_URL = "https://shop.fabionazzari.it";
 const EXTERNAL_PAGE_URLS = {
-  officina: OFFICINA_SHOP_URL
+  officina: OFFICINA_SHOP_URL,
+  ricette: "/ricette"
 };
 const ROUTE_TABLE = {
   it: {
@@ -1503,6 +1504,7 @@ const SITE_NAV_ITEMS = [
   { label: "OFFICINA INTOLLERANTE", page: "officina" },
   { label: "OFFICINA B2B", page: "officina-b2b" },
   { label: "PASTICCERIA", page: "pasticceria" },
+  { label: "RICETTE", page: "ricette" },
   { label: "CONTATTI", page: "contatti" }
 ];
 const ACTIVITY_CONTACT_GROUPS = [
@@ -2645,29 +2647,26 @@ const CookieConsentManager = ({ consentState, preferencesOpen, onAcceptAll, onRe
     null,
     !consentState.hasInteracted ? h(
       "div",
-      { className: "fixed bottom-4 left-4 right-4 z-[1200] sm:right-auto" },
+      { className: "fixed inset-0 z-[1200] flex items-center justify-center bg-black/60 px-4 py-6 backdrop-blur-[3px]" },
       h(
         "div",
-        { className: "w-full max-w-xl rounded-[24px] border border-black/10 bg-[rgba(252,250,246,0.98)] shadow-[0_22px_50px_rgba(26,26,24,0.16)] backdrop-blur-xl px-4 py-3 sm:px-5 sm:py-4" },
+        { className: "w-full max-w-2xl rounded-[30px] border border-white/20 bg-[#FCFAF6] shadow-[0_40px_100px_rgba(0,0,0,0.32)] px-5 py-6 sm:px-8 sm:py-8" },
         h(
           "div",
-          { className: "flex flex-col gap-3" },
+          { className: "flex flex-col gap-5" },
           h(
             "div",
-            { className: "max-w-lg" },
-            h("h3", { className: "text-sm sm:text-base text-[#1A1A18] font-semibold" }, "🍪 Biscotti? Solo digitali e senza glutine, promesso!")
+            null,
+            h("p", { className: "text-[11px] uppercase tracking-[0.24em] text-[#8B5E3C] font-semibold mb-3" }, "Privacy e cookie"),
+            h("h3", { className: "text-2xl sm:text-4xl text-[#1A1A18] font-semibold tracking-[-0.05em] mb-4" }, "Scegli come vuoi navigare."),
+            h("p", { className: "text-sm sm:text-base text-gray-600 max-w-xl" }, "Usiamo cookie necessari per far funzionare il sito. Analytics, preferenze e marketing restano spenti finche non dai consenso. Puoi accettare tutto, rifiutare gli opzionali o personalizzare la scelta.")
           ),
           h(
             "div",
-            { className: "flex flex-wrap items-center gap-2" },
-            h("button", { type: "button", onClick: onAcceptAll, className: "px-4 py-2.5 rounded-full bg-[#1A1A18] text-white text-[11px] uppercase tracking-[0.16em] font-semibold hover:bg-[#8B5E3C] transition" }, "Accetta"),
-            h(
-              "button",
-              { type: "button", onClick: onRejectAll, className: "px-3 py-2 rounded-full bg-white text-[#1A1A18] text-[11px] uppercase tracking-[0.16em] font-semibold border border-black/8 hover:border-[#8B5E3C] hover:text-[#8B5E3C] transition" },
-              "Rifiuta"
-            )
-            ,
-            h("button", { type: "button", onClick: onOpenPreferences, className: "px-3 py-2 rounded-full bg-[#F3EEE6] text-[#1A1A18] text-[11px] uppercase tracking-[0.16em] font-semibold border border-black/8 hover:bg-[#E8DED1] transition" }, "Preferenze")
+            { className: "grid grid-cols-1 gap-3 sm:grid-cols-3" },
+            h("button", { type: "button", onClick: onAcceptAll, className: "w-full px-5 py-3.5 rounded-full bg-[#1A1A18] text-white text-xs uppercase tracking-[0.16em] font-semibold hover:bg-[#8B5E3C] transition" }, "Accetta tutto"),
+            h("button", { type: "button", onClick: onRejectAll, className: "w-full px-5 py-3.5 rounded-full bg-white text-[#1A1A18] text-xs uppercase tracking-[0.16em] font-semibold border border-black/10 hover:border-[#8B5E3C] hover:text-[#8B5E3C] transition" }, "Rifiuta"),
+            h("button", { type: "button", onClick: onOpenPreferences, className: "w-full px-5 py-3.5 rounded-full bg-[#F3EEE6] text-[#1A1A18] text-xs uppercase tracking-[0.16em] font-semibold border border-black/8 hover:bg-[#E8DED1] transition" }, "Preferenze")
           )
         )
       )
