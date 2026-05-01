@@ -1,0 +1,99 @@
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/shopify/orders-paid"
+  to = "/.netlify/functions/shopify-fattureincloud-orders-paid"
+  status = 200
+
+[[redirects]]
+  from = "/fabio-nazzari-website.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy"
+  status = 301
+
+[[redirects]]
+  from = "/en/privacy.html"
+  to = "/en/privacy"
+  status = 301
+
+[[redirects]]
+  from = "/links"
+  to = "/bio"
+  status = 301
+
+[[redirects]]
+  from = "/links/"
+  to = "/bio"
+  status = 301
+
+[[redirects]]
+  from = "/en/links"
+  to = "/en/bio"
+  status = 301
+
+[[redirects]]
+  from = "/en/links/"
+  to = "/en/bio"
+  status = 301
+
+[[redirects]]
+  from = "/officina"
+  to = "https://shop.fabionazzari.it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/officina/"
+  to = "https://shop.fabionazzari.it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/officina/*"
+  to = "https://shop.fabionazzari.it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/officinaintollerante"
+  to = "https://shop.fabionazzari.it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/officinaintollerante/"
+  to = "https://shop.fabionazzari.it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/officina-intollerante"
+  to = "https://shop.fabionazzari.it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/officina-intollerante/"
+  to = "https://shop.fabionazzari.it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/officina"
+  to = "https://shop.fabionazzari.it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/officina/"
+  to = "https://shop.fabionazzari.it"
+  status = 301
+  force = true

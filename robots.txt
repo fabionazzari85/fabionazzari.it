@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /netlify/functions/
+Disallow: /studio-links-iseo-47/
+
+Sitemap: https://www.fabionazzari.it/sitemap.xml
+Sitemap: https://shop.fabionazzari.it/sitemap.xml

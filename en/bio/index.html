@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link in bio | Fabio Nazzari</title>
+    <meta
+      name="description"
+      content="A Linktree-style page aligned with the Fabio Nazzari website, collecting the most important links in a single social-ready destination."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Link in bio | Fabio Nazzari" />
+    <meta
+      property="og:description"
+      content="Open the main Fabio Nazzari links from a dedicated social landing page that matches the website."
+    />
+    <meta property="og:url" content="/en/bio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="/assets/photos/fabio-ritratto-grissini.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#1A1A18" />
+    <link rel="canonical" href="/en/bio" />
+    <link rel="alternate" hreflang="it" href="/bio" />
+    <link rel="alternate" hreflang="en" href="/en/bio" />
+    <link rel="alternate" hreflang="x-default" href="/bio" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/bio/bio-page.css" />
+  </head>
+  <body class="bio-page">
+    <main class="bio-shell">
+      <section class="bio-card bio-hero">
+        <div class="bio-topbar">
+          <a class="bio-pill bio-site-pill" id="home-link" href="../">fabionazzari.it</a>
+          <a class="bio-pill bio-lang-pill" id="lang-link" href="../../bio/">Italiano</a>
+        </div>
+
+        <div class="bio-avatar">
+          <img
+            id="profile-image"
+            src="../../assets/photos/fabio-ritratto-grissini.jpeg"
+            alt="Fabio Nazzari"
+          />
+        </div>
+
+        <div class="bio-copy">
+          <p class="bio-eyebrow" id="profile-eyebrow">Fabio Nazzari</p>
+          <h1 class="bio-title" id="profile-title">Link in bio</h1>
+          <p class="bio-subtitle" id="profile-subtitle">
+            A cleaner social-first landing page with the most useful links from the
+            Fabio Nazzari world.
+          </p>
+        </div>
+
+        <div class="bio-socials" id="social-list"></div>
+      </section>
+
+      <section class="bio-card bio-links-card">
+        <p class="bio-kicker" id="section-kicker">Quick links</p>
+        <h2 class="bio-section-title" id="section-title">Open the right destination instantly</h2>
+        <p class="bio-section-copy" id="section-copy">
+          This page is designed as the single link to use on social media and routes
+          visitors to the most relevant Fabio Nazzari destinations.
+        </p>
+
+        <div class="bio-link-stack" id="main-links"></div>
+        <p class="bio-status" id="data-status"></p>
+      </section>
+
+      <div class="bio-footer-note">
+        <span id="footer-left">Fabio Nazzari · gluten-free excellence</span>
+        <span id="footer-right">Social landing page from the official website</span>
+      </div>
+    </main>
+
+    <script>
+      window.BIO_PAGE_CONFIG = {
+        locale: "en",
+        apiEndpoint: "../../.netlify/functions/bio-links-public",
+        rootPrefix: "../../",
+        homeHref: "../",
+        homeLabel: "fabionazzari.it",
+        languageHref: "../../bio/",
+        languageLabel: "Italiano",
+        sectionKicker: "Quick links",
+        sectionTitle: "Open the right destination instantly",
+        sectionCopy:
+          "This page is designed as the single link to use on social media and routes visitors to the most relevant Fabio Nazzari destinations.",
+        footerLeft: "Fabio Nazzari · gluten-free excellence",
+        footerRight: "Social landing page from the official website",
+        updatedPrefix: "Updated: ",
+        fallbackStatus:
+          "Preview mode: the published site will load the links saved from the private admin panel."
+      };
+    </script>
+    <script src="../../assets/bio/bio-public.js" defer></script>
+  </body>
+</html>

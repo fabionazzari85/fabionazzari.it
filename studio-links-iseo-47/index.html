@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestione Link Bio | Accesso riservato</title>
+    <meta name="robots" content="noindex,nofollow,noarchive,noimageindex" />
+    <meta
+      name="description"
+      content="Pannello riservato per gestire la pagina link in bio di Fabio Nazzari."
+    />
+    <meta name="theme-color" content="#1A1A18" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/bio/bio-page.css" />
+  </head>
+  <body class="bio-admin-page">
+    <main class="admin-shell">
+      <section class="admin-panel admin-login-panel" id="login-panel">
+        <p class="admin-kicker">Accesso riservato</p>
+        <h1 class="admin-title">Gestione link bio</h1>
+        <p class="admin-copy">
+          Questa e la pagina privata da cui puoi aggiornare testi, social e pulsanti
+          della bio pubblica senza rimettere mano al layout.
+        </p>
+
+        <form class="admin-form" id="login-form">
+          <div class="admin-field">
+            <label for="password-input">Password admin</label>
+            <input
+              class="admin-input"
+              id="password-input"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Inserisci la password"
+              required
+            />
+          </div>
+
+          <div class="admin-button-row">
+            <button class="admin-button is-primary" type="submit">Entra</button>
+            <a class="admin-button" href="../bio/" target="_blank" rel="noreferrer">
+              Apri la bio pubblica
+            </a>
+          </div>
+        </form>
+
+        <p class="admin-status" id="login-status"></p>
+      </section>
+
+      <section class="admin-panel hidden" id="editor-panel">
+        <div class="admin-toolbar">
+          <div>
+            <p class="admin-kicker">Pannello admin</p>
+            <h1 class="admin-title">Gestione Link Bio</h1>
+            <p class="admin-copy">
+              Modifica i contenuti, salva e la pagina pubblica si aggiorna con il nuovo
+              elenco di link.
+            </p>
+          </div>
+
+          <div class="admin-toolbar-actions">
+            <a class="admin-button" href="../bio/" target="_blank" rel="noreferrer">
+              Apri bio IT
+            </a>
+            <a class="admin-button" href="../en/bio/" target="_blank" rel="noreferrer">
+              Apri bio EN
+            </a>
+            <button class="admin-button" id="logout-button" type="button">Esci</button>
+            <button class="admin-button is-primary" id="save-button" type="button">
+              Salva
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-meta-row">
+          <div class="admin-tabs" id="locale-tabs"></div>
+          <p class="admin-meta-text" id="updated-at-label"></p>
+        </div>
+
+        <p class="admin-status" id="editor-status"></p>
+        <div class="admin-sections" id="editor-sections"></div>
+      </section>
+    </main>
+
+    <script>
+      window.BIO_ADMIN_CONFIG = {
+        authEndpoint: "../.netlify/functions/bio-links-admin-auth",
+        apiEndpoint: "../.netlify/functions/bio-links-admin",
+        tokenStorageKey: "fabio-bio-admin-token-v1"
+      };
+    </script>
+    <script src="../assets/bio/bio-admin.js" defer></script>
+  </body>
+</html>

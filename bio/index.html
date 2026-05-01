@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link in bio | Fabio Nazzari</title>
+    <meta
+      name="description"
+      content="Una pagina stile Linktree, coordinata con il sito Fabio Nazzari, per raccogliere i collegamenti principali in un unico link da usare sui social."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Link in bio | Fabio Nazzari" />
+    <meta
+      property="og:description"
+      content="Apri subito i collegamenti principali di Fabio Nazzari da una pagina social dedicata e perfettamente in linea con il sito."
+    />
+    <meta property="og:url" content="/bio" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:image" content="/assets/photos/fabio-ritratto-grissini.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#1A1A18" />
+    <link rel="canonical" href="/bio" />
+    <link rel="alternate" hreflang="it" href="/bio" />
+    <link rel="alternate" hreflang="en" href="/en/bio" />
+    <link rel="alternate" hreflang="x-default" href="/bio" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/bio/bio-page.css" />
+  </head>
+  <body class="bio-page">
+    <main class="bio-shell">
+      <section class="bio-card bio-hero">
+        <div class="bio-topbar">
+          <a class="bio-pill bio-site-pill" id="home-link" href="../">fabionazzari.it</a>
+          <a class="bio-pill bio-lang-pill" id="lang-link" href="../en/bio/">English</a>
+        </div>
+
+        <div class="bio-avatar">
+          <img
+            id="profile-image"
+            src="../assets/photos/fabio-ritratto-grissini.jpeg"
+            alt="Fabio Nazzari"
+          />
+        </div>
+
+        <div class="bio-copy">
+          <p class="bio-eyebrow" id="profile-eyebrow">Fabio Nazzari</p>
+          <h1 class="bio-title" id="profile-title">Link in bio</h1>
+          <p class="bio-subtitle" id="profile-subtitle">
+            Una landing rapida e pulita, pensata per i social, con tutti i
+            collegamenti piu utili del tuo mondo.
+          </p>
+        </div>
+
+        <div class="bio-socials" id="social-list"></div>
+      </section>
+
+      <section class="bio-card bio-links-card">
+        <p class="bio-kicker" id="section-kicker">Collegamenti rapidi</p>
+        <h2 class="bio-section-title" id="section-title">Apri subito il punto giusto</h2>
+        <p class="bio-section-copy" id="section-copy">
+          Questa pagina funziona come un link unico da mettere sui social e punta ai
+          contenuti piu utili del tuo ecosistema.
+        </p>
+
+        <div class="bio-link-stack" id="main-links"></div>
+        <p class="bio-status" id="data-status"></p>
+      </section>
+
+      <div class="bio-footer-note">
+        <span id="footer-left">Fabio Nazzari · eccellenza senza glutine</span>
+        <span id="footer-right">Landing social del sito ufficiale</span>
+      </div>
+    </main>
+
+    <script>
+      window.BIO_PAGE_CONFIG = {
+        locale: "it",
+        apiEndpoint: "../.netlify/functions/bio-links-public",
+        rootPrefix: "../",
+        homeHref: "../",
+        homeLabel: "fabionazzari.it",
+        languageHref: "../en/bio/",
+        languageLabel: "English",
+        sectionKicker: "Collegamenti rapidi",
+        sectionTitle: "Apri subito il punto giusto",
+        sectionCopy:
+          "Questa pagina funziona come un link unico da mettere sui social e punta ai contenuti piu utili del tuo ecosistema.",
+        footerLeft: "Fabio Nazzari · eccellenza senza glutine",
+        footerRight: "Landing social del sito ufficiale",
+        updatedPrefix: "Aggiornato: ",
+        fallbackStatus:
+          "Modalita anteprima: sul sito pubblicato verranno caricati i link salvati dal pannello riservato."
+      };
+    </script>
+    <script src="../assets/bio/bio-public.js" defer></script>
+  </body>
+</html>

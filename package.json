@@ -1,0 +1,13 @@
+{
+  "name": "fabio-nazzari-site",
+  "private": true,
+  "scripts": {
+    "dev:netlify": "netlify dev",
+    "lint": "node scripts/validate-recipes.mjs",
+    "typecheck": "node --check scripts/build-recipes.mjs && node --check scripts/validate-recipes.mjs",
+    "build": "node scripts/build-recipes.mjs"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^10.7.4"
+  }
+}
