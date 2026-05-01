@@ -38,6 +38,14 @@
     .recipe-prose ol, .recipe-prose ul { padding-left:1.25rem; }
     .recipe-prose li { margin:.55rem 0; }
     .soft-card { border:1px solid rgba(26,26,24,.08); background:#fff; border-radius:18px; padding:1.1rem; }
+    .cookie-consent-overlay { position:fixed; inset:0; z-index:80; display:none; align-items:center; justify-content:center; padding:1rem; background:rgba(12,12,10,.62); backdrop-filter:blur(10px); }
+    .cookie-consent-overlay.is-visible { display:flex; }
+    .cookie-consent-card { width:min(100%,520px); border:1px solid rgba(255,255,255,.32); border-radius:24px; background:#fff; padding:1.35rem; box-shadow:0 28px 70px rgba(0,0,0,.28); }
+    .cookie-consent-card p { color:#5f574f; }
+    .cookie-consent-actions { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.2rem; }
+    .cookie-consent-actions button { min-height:44px; border-radius:999px; padding:.75rem 1rem; font-size:.72rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+    .cookie-consent-accept { background:#1A1A18; color:#fff; }
+    .cookie-consent-reject { border:1px solid rgba(26,26,24,.14); background:#fff; color:#1A1A18; }
     @media (max-width:640px) { .editorial-panel { border-radius:24px; } .hide-mobile { display:none; } }
   </style>
 </head>
@@ -123,5 +131,105 @@
     </div>
   </div>
 </footer>
+<div id="cookie-consent-overlay" class="cookie-consent-overlay" role="dialog" aria-modal="true" aria-labelledby="cookie-consent-title">
+  <div class="cookie-consent-card">
+    <p class="section-kicker mb-3">Privacy e analytics</p>
+    <h2 id="cookie-consent-title" class="mb-3 text-2xl">Usiamo cookie tecnici e, solo se accetti, analytics e marketing.</h2>
+    <p class="text-sm">GA4, Microsoft Clarity, Meta Pixel e Google Ads ci aiutano a capire quali ricette e guide sono piu utili e a misurare le campagne. Puoi accettare o rifiutare: senza scelta il banner resta visibile.</p>
+    <div class="cookie-consent-actions">
+      <button type="button" class="cookie-consent-accept" data-cookie-accept>Accetta tutto</button>
+      <button type="button" class="cookie-consent-reject" data-cookie-reject>Rifiuta</button>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var storageKey = "fabio-nazzari-cookie-consent-v1";
+  var config = {"ga4MeasurementId":"G-PLXENG9EG1","clarityProjectId":"wkcqngt24y","metaPixelId":"3801594386649106","googleAdsId":"AW-2988631615"};
+  var overlay = document.getElementById("cookie-consent-overlay");
+  function readConsent() {
+    try {
+      var raw = window.localStorage.getItem(storageKey);
+      return raw ? JSON.parse(raw) : null;
+    } catch (error) {
+      return null;
+    }
+  }
+  function saveConsent(analytics, marketing) {
+    var payload = {
+      hasInteracted: true,
+      preferences: { necessary: true, functional: true, analytics: analytics, marketing: marketing },
+      updatedAt: new Date().toISOString()
+    };
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify(payload));
+    } catch (error) {}
+    return payload;
+  }
+  function injectScript(id, src, onload) {
+    if (document.getElementById(id)) return;
+    var script = document.createElement("script");
+    script.id = id;
+    script.async = true;
+    script.src = src;
+    if (onload) script.onload = onload;
+    document.head.appendChild(script);
+  }
+  function loadAnalytics() {
+    if (config.ga4MeasurementId) {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      injectScript("ga4-" + config.ga4MeasurementId, "https://www.googletagmanager.com/gtag/js?id=" + config.ga4MeasurementId, function () {
+        window.gtag("config", config.ga4MeasurementId, { anonymize_ip: true, allow_google_signals: false });
+      });
+    }
+    if (config.clarityProjectId && !window.clarity) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", config.clarityProjectId);
+    }
+  }
+  function loadMarketing() {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+    if (config.googleAdsId) {
+      window.gtag("js", new Date());
+      injectScript("google-ads-" + config.googleAdsId, "https://www.googletagmanager.com/gtag/js?id=" + config.googleAdsId, function () {
+        window.gtag("config", config.googleAdsId);
+      });
+    }
+    if (config.metaPixelId && !window.fbq) {
+      !function(f,b,e,v,n,t,s){
+        if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=true;n.version="2.0";n.queue=[];
+        t=b.createElement(e);t.async=true;t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s);
+      }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      window.fbq("init", config.metaPixelId);
+      window.fbq("consent", "grant");
+      window.fbq("track", "PageView");
+    }
+  }
+  function applyConsent(consent) {
+    if (!consent || !consent.hasInteracted) {
+      if (overlay) overlay.classList.add("is-visible");
+      return;
+    }
+    if (overlay) overlay.classList.remove("is-visible");
+    if (consent.preferences && consent.preferences.analytics) loadAnalytics();
+    if (consent.preferences && consent.preferences.marketing) loadMarketing();
+  }
+  applyConsent(readConsent());
+  document.querySelector("[data-cookie-accept]")?.addEventListener("click", function () {
+    applyConsent(saveConsent(true, true));
+  });
+  document.querySelector("[data-cookie-reject]")?.addEventListener("click", function () {
+    applyConsent(saveConsent(false, false));
+  });
+})();
+</script>
 </body>
 </html>

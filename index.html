@@ -1479,10 +1479,10 @@ const DEFAULT_COOKIE_PREFERENCES = {
   marketing: false
 };
 const TRACKING_CONFIG = {
-  ga4MeasurementId: "",
-  clarityProjectId: "",
-  metaPixelId: "",
-  googleAdsId: ""
+  ga4MeasurementId: "G-PLXENG9EG1",
+  clarityProjectId: "wkcqngt24y",
+  metaPixelId: "3801594386649106",
+  googleAdsId: "AW-2988631615"
 };
 const BRAND_CONTACT_DETAILS = {
   email: "info@nazzari-iseo.it",
@@ -2547,6 +2547,13 @@ const loadTrackingScripts = (preferences) => {
       y = l.getElementsByTagName(r)[0];
       y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", TRACKING_CONFIG.clarityProjectId);
+  }
+  if (preferences.marketing && TRACKING_CONFIG.googleAdsId && !TRACKING_SCRIPT_STATE.googleAds) {
+    TRACKING_SCRIPT_STATE.googleAds = true;
+    injectScriptOnce(`google-ads-${TRACKING_CONFIG.googleAdsId}`, `https://www.googletagmanager.com/gtag/js?id=${TRACKING_CONFIG.googleAdsId}`, () => {
+      window.gtag("js", new Date());
+      window.gtag("config", TRACKING_CONFIG.googleAdsId);
+    });
   }
   if (preferences.marketing && TRACKING_CONFIG.metaPixelId && !TRACKING_SCRIPT_STATE.meta) {
     TRACKING_SCRIPT_STATE.meta = true;
