@@ -10,14 +10,14 @@ function contactOptOutScript(isEnglish) {
   const optOutText = ${JSON.stringify(optOutText)};
   const professionalValue = ${JSON.stringify(professionalValue)};
   const enthusiastValue = ${JSON.stringify(enthusiastValue)};
-  if (!window.form || !window.appassionatoExtra || !window.liveExtra || !window.contattiExtra || !window.professionistaExtra || !window.aggiornamenti || !window.email) return;
+  if (typeof form === "undefined" || typeof appassionatoExtra === "undefined" || typeof liveExtra === "undefined" || typeof contattiExtra === "undefined" || typeof professionistaExtra === "undefined" || typeof aggiornamenti === "undefined" || typeof email === "undefined") return;
 
   aggiornamenti.name = "no_aggiornamenti";
   aggiornamenti.value = "Si";
   const labelText = aggiornamenti.closest("label")?.querySelector("span");
   if (labelText) labelText.textContent = optOutText;
 
-  window.syncConditionalFields = function syncConditionalFields() {
+  syncConditionalFields = function syncConditionalFields() {
     const profilo = selected("profilo");
     const formato = selected("formato_preferito");
     const noUpdates = aggiornamenti.checked;
