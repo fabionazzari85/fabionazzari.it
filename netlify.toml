@@ -5,6 +5,20 @@
   directory = "netlify/functions"
 
 [[redirects]]
+  from = "/corsi-online"
+  to = "/en/corsi-online/"
+  status = 302
+  force = true
+  conditions = {Language = ["en", "fr", "de", "es", "pt", "nl", "pl", "ro", "ru", "uk", "ar", "zh", "ja", "ko", "hi", "tr", "el", "sv", "da", "no", "fi", "cs", "hu", "bg", "hr", "sk", "sl", "et", "lv", "lt"]}
+
+[[redirects]]
+  from = "/corsi-online/"
+  to = "/en/corsi-online/"
+  status = 302
+  force = true
+  conditions = {Language = ["en", "fr", "de", "es", "pt", "nl", "pl", "ro", "ru", "uk", "ar", "zh", "ja", "ko", "hi", "tr", "el", "sv", "da", "no", "fi", "cs", "hu", "bg", "hr", "sk", "sl", "et", "lv", "lt"]}
+
+[[redirects]]
   from = "/api/shopify/orders-paid"
   to = "/.netlify/functions/shopify-fattureincloud-orders-paid"
   status = 200
