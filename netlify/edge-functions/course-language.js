@@ -32,6 +32,7 @@ function contactOptOutScript(isEnglish) {
     setRequired('input[name="stato_senza_glutine"]', !noUpdates && profilo === professionalValue);
   };
 
+  form.addEventListener("change", syncConditionalFields);
   syncConditionalFields();
 })();
 </script>`;
