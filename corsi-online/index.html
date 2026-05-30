@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Corsi online senza glutine | Fabio Nazzari</title>
+  <meta name="description" content="Questionario riservato sui futuri corsi online senza glutine di Fabio Nazzari.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f5f1ea;
+      --panel: rgba(255, 255, 255, 0.86);
+      --ink: #111111;
+      --muted: rgba(17, 17, 17, 0.62);
+      --line: rgba(17, 17, 17, 0.1);
+      --soft: rgba(164, 161, 141, 0.12);
+      --success: #eafaf2;
+      --error: #fff1f1;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(164, 161, 141, 0.16), transparent 28%),
+        var(--paper);
+      color: var(--ink);
+      font-family: Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(100%, 30rem);
+      margin: 0 auto;
+      padding: 1.4rem 1rem 2.5rem;
+    }
+
+    .kicker {
+      margin: 0 0 0.75rem;
+      color: rgba(17, 17, 17, 0.52);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, legend, .question {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+
+    h1 {
+      margin: 0 0 1.8rem;
+      font-size: clamp(2.75rem, 13vw, 4.35rem);
+      line-height: 0.9;
+    }
+
+    form {
+      display: grid;
+      gap: 1.3rem;
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      border-radius: 1.5rem;
+      background: var(--panel);
+      padding: 1rem;
+      box-shadow: 0 24px 70px rgba(17, 17, 17, 0.08);
+      backdrop-filter: blur(16px);
+    }
+
+    section {
+      display: grid;
+      gap: 0.9rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+    }
+
+    section:last-of-type { border-bottom: 0; padding-bottom: 0; }
+
+    h2 {
+      margin: 0;
+      font-size: 2.35rem;
+      line-height: 0.95;
+    }
+
+    legend, .question {
+      margin: 0 0 0.65rem;
+      padding: 0;
+      font-size: 1.55rem;
+      line-height: 1;
+    }
+
+    fieldset {
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.2rem;
+      color: rgba(17, 17, 17, 0.45);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    .stack { display: grid; gap: 0.65rem; }
+
+    .choice {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      min-height: 3.2rem;
+      border: 1px solid var(--line);
+      border-radius: 1.15rem;
+      background: rgba(255, 255, 255, 0.84);
+      padding: 0.85rem 0.95rem;
+      font-size: 0.98rem;
+      font-weight: 750;
+      line-height: 1.35;
+    }
+
+    .choice input {
+      width: 1.2rem;
+      height: 1.2rem;
+      margin: 0;
+      accent-color: var(--ink);
+      flex: 0 0 auto;
+    }
+
+    .field { display: grid; gap: 0.5rem; }
+
+    .field span {
+      color: rgba(17, 17, 17, 0.64);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    input[type="text"], input[type="email"], input[type="tel"] {
+      width: 100%;
+      min-height: 3.15rem;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: #fff;
+      padding: 0 1rem;
+      color: var(--ink);
+      font: inherit;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: rgba(17, 17, 17, 0.25);
+      box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.06);
+    }
+
+    .soft-box {
+      display: grid;
+      gap: 0.85rem;
+      border-radius: 1.15rem;
+      background: rgba(17, 17, 17, 0.04);
+      padding: 0.9rem;
+    }
+
+    .checkline {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 1.15rem;
+      background: rgba(255, 255, 255, 0.84);
+      padding: 0.9rem;
+      color: rgba(17, 17, 17, 0.72);
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .checkline input {
+      width: 1.05rem;
+      height: 1.05rem;
+      margin-top: 0.18rem;
+      accent-color: var(--ink);
+      flex: 0 0 auto;
+    }
+
+    .hidden { display: none !important; }
+
+    .status {
+      display: none;
+      border-radius: 1rem;
+      padding: 0.9rem;
+      font-size: 0.93rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .status.is-visible { display: block; }
+    .status.success { background: var(--success); color: #145533; }
+    .status.error { background: var(--error); color: #8a1c1c; }
+
+    .submit-row {
+      display: grid;
+      gap: 0.8rem;
+      padding-top: 0.3rem;
+    }
+
+    .time-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    button {
+      width: 100%;
+      min-height: 3.55rem;
+      border: 0;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    button:disabled { opacity: 0.62; cursor: wait; }
+
+    @media (min-width: 44rem) {
+      main { padding-top: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="kicker">Corsi online</p>
+    <h1>Aiutami a costruire i prossimi corsi online sul senza glutine.</h1>
+
+    <form name="corsi-online" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/corsi-online/">
+      <input type="hidden" name="form-name" value="corsi-online">
+      <p class="hidden"><label>Non compilare <input name="bot-field"></label></p>
+
+      <section>
+        <div>
+          <p class="eyebrow">Profilo</p>
+          <h2>Da dove parti?</h2>
+        </div>
+        <fieldset class="stack">
+          <label class="choice"><span>Professionista</span><input required type="radio" name="profilo" value="Professionista"></label>
+          <label class="choice"><span>Appassionato</span><input required type="radio" name="profilo" value="Appassionato"></label>
+        </fieldset>
+        <div id="appassionato-extra" class="soft-box hidden">
+          <p class="question">Hai intenzione di aprire una attivita senza glutine?</p>
+          <label class="choice"><span>Si</span><input type="radio" name="apertura_attivita" value="Si"></label>
+          <label class="choice"><span>Ci sto pensando</span><input type="radio" name="apertura_attivita" value="Ci sto pensando"></label>
+          <label class="choice"><span>No</span><input type="radio" name="apertura_attivita" value="No"></label>
+        </div>
+      </section>
+
+      <section>
+        <div>
+          <p class="eyebrow">Interesse</p>
+          <h2>Saresti interessato a corsi online sul senza glutine?</h2>
+        </div>
+        <fieldset class="stack">
+          <label class="choice"><span>Si, molto</span><input required type="radio" name="interesse_corsi" value="Si, molto"></label>
+          <label class="choice"><span>Forse</span><input required type="radio" name="interesse_corsi" value="Forse"></label>
+          <label class="choice"><span>Non ora</span><input required type="radio" name="interesse_corsi" value="Non ora"></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Qual e l'argomento che ti interessa di piu?</legend>
+          <div class="stack">
+            <label class="choice"><span>Pane, pizza e focacce senza glutine</span><input required type="radio" name="argomento" value="Pane, pizza e focacce senza glutine"></label>
+            <label class="choice"><span>Pasticceria da colazione</span><input required type="radio" name="argomento" value="Pasticceria da colazione"></label>
+            <label class="choice"><span>Grandi lievitati</span><input required type="radio" name="argomento" value="Grandi lievitati"></label>
+            <label class="choice"><span>Frolle, crostate e biscotti</span><input required type="radio" name="argomento" value="Frolle, crostate e biscotti"></label>
+            <label class="choice"><span>Organizzazione laboratorio gluten free</span><input required type="radio" name="argomento" value="Organizzazione laboratorio gluten free"></label>
+            <label class="choice"><span>Avvio di una attivita senza glutine</span><input required type="radio" name="argomento" value="Avvio di una attivita senza glutine"></label>
+            <label class="field"><span>Altro argomento</span><input type="text" name="argomento_altro" placeholder="Scrivi qui"></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferiresti un corso live o registrato?</legend>
+          <div class="stack">
+            <label class="choice"><span>Live</span><input required type="radio" name="formato_preferito" value="Live"></label>
+            <label class="choice"><span>Registrato</span><input required type="radio" name="formato_preferito" value="Registrato"></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Vorresti un corso monotematico o un percorso piu lungo e completo?</legend>
+          <div class="stack">
+            <label class="choice"><span>Corso monotematico</span><input required type="radio" name="durata_preferita" value="Corso monotematico"></label>
+            <label class="choice"><span>Corso piu lungo e completo</span><input required type="radio" name="durata_preferita" value="Corso piu lungo e completo"></label>
+          </div>
+        </fieldset>
+      </section>
+
+      <section>
+        <div>
+          <p class="eyebrow">Investimento</p>
+          <h2>Quanto investiresti?</h2>
+        </div>
+        <label class="field"><span class="question">Live da 3 ore su una tematica</span><input required type="text" name="budget_live" placeholder="Scrivi una cifra"></label>
+        <div id="live-extra" class="soft-box hidden">
+          <p class="question">Per una live, quando preferiresti partecipare?</p>
+          <label class="choice"><span>Durante la settimana</span><input type="radio" name="preferenza_orario_live" value="Durante la settimana"></label>
+          <label class="choice"><span>Nel weekend</span><input type="radio" name="preferenza_orario_live" value="Nel weekend"></label>
+        </div>
+        <label class="field"><span class="question">Corso registrato piu approfondito, disponibile per un anno</span><input required type="text" name="budget_registrato" placeholder="Scrivi una cifra"></label>
+      </section>
+
+      <section>
+        <div>
+          <p class="eyebrow">Contatto</p>
+          <h2>Dove posso aggiornarti?</h2>
+        </div>
+        <label class="checkline"><input id="aggiornamenti" type="checkbox" name="aggiornamenti" value="Si"><span>Voglio ricevere aggiornamenti su corsi online futuri.</span></label>
+
+        <div id="contatti-extra" class="stack hidden">
+          <div id="professionista-extra" class="soft-box hidden">
+            <label class="field"><span>Nome attivita</span><input type="text" name="nome_attivita" placeholder="Nome attivita"></label>
+            <fieldset>
+              <legend>A che punto sei con il senza glutine?</legend>
+              <div class="stack">
+                <label class="choice"><span>Faccio gia senza glutine</span><input type="radio" name="stato_senza_glutine" value="Faccio gia senza glutine"></label>
+                <label class="choice"><span>Voglio inserire il senza glutine</span><input type="radio" name="stato_senza_glutine" value="Voglio inserire il senza glutine"></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <label class="field"><span>Nome e cognome</span><input type="text" name="nome_cognome" placeholder="Nome e cognome"></label>
+          <label class="field"><span>Email</span><input id="email" type="email" name="email" placeholder="nome@email.it"></label>
+          <label class="field"><span>Numero di telefono</span><input type="tel" name="telefono" placeholder="+39"></label>
+          <label class="field"><span>Profilo Instagram</span><input type="text" name="instagram" placeholder="@profilo"></label>
+        </div>
+      </section>
+
+      <p id="status" class="status"></p>
+
+      <div class="submit-row">
+        <p class="time-note">Tempo medio di compilazione: circa 2 minuti.</p>
+        <button id="submit" type="submit">Invia risposte</button>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    const form = document.querySelector('form');
+    const appassionatoExtra = document.querySelector('#appassionato-extra');
+    const liveExtra = document.querySelector('#live-extra');
+    const contattiExtra = document.querySelector('#contatti-extra');
+    const professionistaExtra = document.querySelector('#professionista-extra');
+    const aggiornamenti = document.querySelector('#aggiornamenti');
+    const email = document.querySelector('#email');
+    const statusBox = document.querySelector('#status');
+    const submit = document.querySelector('#submit');
+
+    function selected(name) {
+      const input = form.querySelector(`input[name="${name}"]:checked`);
+      return input ? input.value : '';
+    }
+
+    function setRequired(selector, required) {
+      document.querySelectorAll(selector).forEach((input) => {
+        input.required = required;
+      });
+    }
+
+    function syncConditionalFields() {
+      const profilo = selected('profilo');
+      const formato = selected('formato_preferito');
+      const wantsUpdates = aggiornamenti.checked;
+
+      appassionatoExtra.classList.toggle('hidden', profilo !== 'Appassionato');
+      liveExtra.classList.toggle('hidden', formato !== 'Live');
+      contattiExtra.classList.toggle('hidden', !wantsUpdates);
+      professionistaExtra.classList.toggle('hidden', !(wantsUpdates && profilo === 'Professionista'));
+
+      email.required = wantsUpdates;
+      setRequired('input[name="preferenza_orario_live"]', formato === 'Live');
+      setRequired('input[name="stato_senza_glutine"]', wantsUpdates && profilo === 'Professionista');
+    }
+
+    form.addEventListener('change', syncConditionalFields);
+    syncConditionalFields();
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      syncConditionalFields();
+
+      if (!form.reportValidity()) return;
+
+      submit.disabled = true;
+      submit.textContent = 'Invio...';
+      statusBox.className = 'status';
+      statusBox.textContent = '';
+
+      try {
+        const data = new FormData(form);
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data).toString()
+        });
+
+        if (!response.ok) throw new Error('submit_failed');
+
+        form.reset();
+        syncConditionalFields();
+        statusBox.textContent = 'Grazie, risposta ricevuta. Ti aggiornero quando il progetto corsi online prende forma.';
+        statusBox.className = 'status success is-visible';
+      } catch (error) {
+        statusBox.textContent = 'Non sono riuscito a inviare il form. Riprova tra poco.';
+        statusBox.className = 'status error is-visible';
+      } finally {
+        submit.disabled = false;
+        submit.textContent = 'Invia risposte';
+      }
+    });
+  </script>
+</body>
+</html>
