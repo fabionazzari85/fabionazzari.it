@@ -2,6 +2,9 @@
 
 const DASHBOARD_LEADS_ENDPOINT = process.env.DASHBOARD_LEADS_ENDPOINT || "https://dashboard.fabionazzari.it/api/webhook/site-lead";
 const DASHBOARD_LEADS_TOKEN = process.env.DASHBOARD_LEADS_TOKEN || "";
+const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
+const LEAD_NOTIFICATION_EMAIL = process.env.LEAD_NOTIFICATION_EMAIL || "fabio@fabionazzari.it";
+const LEAD_NOTIFICATION_FROM = process.env.LEAD_NOTIFICATION_FROM || "Fabio Nazzari Academy <noreply@fabionazzari.it>";
 const LEAD_SCHEMA_VERSION = "site_lead.v1";
 
 const REQUEST_TYPES = new Set([
@@ -47,6 +50,50 @@ const readJson = async (response) => {
     return JSON.parse(text);
   } catch (error) {
     return { raw: text };
+  }
+};
+
+const sendCourseNotification = async (lead) => {
+  if (lead.tipo_richiesta !== "corso_formazione") {
+    return { sent: false, reason: "not_course_lead" };
+  }
+  if (!RESEND_API_KEY || !LEAD_NOTIFICATION_EMAIL) {
+    console.warn("Course notification not configured.");
+    return { sent: false, reason: "not_configured" };
+  }
+
+  const html = `
+    <div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;color:#171614;line-height:1.55">
+      <p style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#a84f2e">Dentro l'Officina · Nuova iscrizione</p>
+      <h1 style="font-size:28px;margin:0 0 18px">Hai ricevuto una nuova iscrizione al corso.</h1>
+      <p style="color:#6b6257">I dati personali, il metodo di pagamento e le eventuali informazioni di fatturazione sono disponibili esclusivamente nella Dashboard.</p>
+      <p style="margin-top:24px"><a href="https://dashboard.fabionazzari.it" style="display:inline-block;padding:12px 18px;border-radius:999px;background:#171614;color:#fff;text-decoration:none;font-weight:700">Apri la Dashboard</a></p>
+    </div>`;
+
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        from: LEAD_NOTIFICATION_FROM,
+        to: [LEAD_NOTIFICATION_EMAIL],
+        subject: "Nuova iscrizione · Dentro l'Officina 01 Il pane",
+        html,
+        text: "Hai ricevuto una nuova iscrizione al corso. Apri la Dashboard per consultare i dati: https://dashboard.fabionazzari.it"
+      })
+    });
+    const responseData = await readJson(response);
+    if (!response.ok) {
+      console.error("Course notification failed:", response.status, responseData);
+      return { sent: false, reason: "provider_error" };
+    }
+    return { sent: true, id: responseData.id || null };
+  } catch (error) {
+    console.error("Course notification unreachable:", error);
+    return { sent: false, reason: "provider_unreachable" };
   }
 };
 
@@ -284,12 +331,15 @@ exports.handler = async (event) => {
       });
     }
 
+    const notification = await sendCourseNotification(lead);
+
     return json(200, {
       ok: true,
       code: responseData.code || "success",
       message: responseData.message || "Lead inviato correttamente.",
       lead_id: responseData.lead_id || responseData.id || null,
-      match_status: responseData.match_status || null
+      match_status: responseData.match_status || null,
+      notification_sent: notification.sent
     });
   } catch (error) {
     return json(502, {
