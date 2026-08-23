@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dentro l'Officina · 01 Il pane | Fabio Nazzari</title>
+  <meta name="description" content="Corso pratico sul pane senza glutine con Fabio Nazzari. 12 settembre 2026, dalle 09:00 alle 16:00, massimo 10 partecipanti.">
+  <link rel="canonical" href="https://www.fabionazzari.it/dentro-officina/01-il-pane/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dentro l'Officina · 01 Il pane">
+  <meta property="og:description" content="Una giornata pratica sul pane senza glutine. 12 settembre, massimo 10 partecipanti.">
+  <meta property="og:url" content="https://www.fabionazzari.it/dentro-officina/01-il-pane/">
+  <meta property="og:image" content="https://www.fabionazzari.it/assets/photos/fabio-laboratorio.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --paper:#f6f1e9;
+      --paper-2:#ede4d7;
+      --ink:#171614;
+      --muted:#6b6257;
+      --rust:#a84f2e;
+      --olive:#9d9a7d;
+      --line:rgba(23,22,20,.13);
+      --white:#fffdf8;
+      --success:#e8f4eb;
+      --error:#fff0ed;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    img{display:block;max-width:100%}
+    a{color:inherit}
+    button,input,select,textarea{font:inherit}
+    .shell{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .brand{display:block;width:165px;height:auto}
+    header{position:absolute;z-index:2;top:0;left:0;width:100%;padding:24px 0}
+    header .brand{filter:brightness(0) invert(1)}
+    .hero{position:relative;min-height:780px;display:flex;align-items:flex-end;background:#24211d;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,9,8,.22) 0%,rgba(10,9,8,.23) 34%,rgba(10,9,8,.91) 100%);z-index:1}
+    .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 47%}
+    .hero-content{position:relative;z-index:1;width:100%;padding:170px 0 62px;color:var(--white)}
+    .kicker{margin:0 0 20px;color:#d8d2b9;font-size:.76rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase}
+    h1,h2,.serif{font-family:"Cormorant Garamond",Georgia,serif}
+    h1{max-width:860px;margin:0;font-size:clamp(4.4rem,12vw,9.6rem);font-weight:700;letter-spacing:-.065em;line-height:.72}
+    h1 span{display:block;margin-top:24px;font-family:Manrope,sans-serif;font-size:clamp(1.35rem,3vw,2.25rem);letter-spacing:-.04em;line-height:1;text-transform:uppercase}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:42px}
+    .meta-pill{border:1px solid rgba(255,255,255,.34);border-radius:999px;background:rgba(17,16,14,.38);padding:11px 16px;font-size:.86rem;font-weight:750;backdrop-filter:blur(8px)}
+    .intro{padding:78px 0}
+    .intro-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:start}
+    .eyebrow{margin:0 0 16px;color:var(--rust);font-size:.72rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase}
+    h2{margin:0;font-size:clamp(3.2rem,6vw,5.6rem);font-weight:700;letter-spacing:-.055em;line-height:.86}
+    .lead{margin:30px 0 0;max-width:720px;color:var(--muted);font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.55rem,2.8vw,2.15rem);font-weight:600;line-height:1.18}
+    .facts{display:grid;border-top:1px solid var(--line)}
+    .fact{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:21px 0;border-bottom:1px solid var(--line)}
+    .fact-label{color:var(--muted);font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+    .fact-value{font-size:1rem;font-weight:750}
+    .registration{padding:78px 0 96px;background:var(--paper-2)}
+    .registration-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:72px;align-items:start}
+    .sticky{position:sticky;top:28px}
+    .price{display:flex;align-items:flex-end;gap:12px;margin:30px 0 12px}
+    .price strong{font-size:5rem;line-height:.78;letter-spacing:-.07em}
+    .price span{padding-bottom:5px;color:var(--muted);font-size:.88rem;font-weight:700}
+    .price-note{max-width:390px;color:var(--muted);font-size:.93rem;line-height:1.55}
+    .limited{display:inline-flex;margin-top:24px;border:1px solid var(--rust);border-radius:999px;padding:10px 14px;color:var(--rust);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+    .form-card{border:1px solid rgba(23,22,20,.08);border-radius:28px;background:rgba(255,253,248,.9);padding:30px;box-shadow:0 22px 60px rgba(46,37,27,.08)}
+    .form-heading{margin:0 0 8px;font-family:"Cormorant Garamond",Georgia,serif;font-size:2.7rem;line-height:.95}
+    .form-intro{margin:0 0 28px;color:var(--muted);font-size:.92rem;line-height:1.55}
+    form{display:grid;gap:24px}
+    .section{display:grid;gap:15px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+    .section:last-of-type{padding-bottom:0;border-bottom:0}
+    .section-title{margin:0;font-size:.73rem;font-weight:800;letter-spacing:.19em;text-transform:uppercase}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    label.field{display:grid;gap:7px;color:var(--muted);font-size:.78rem;font-weight:800}
+    input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;min-height:52px;border:1px solid var(--line);border-radius:14px;background:#fff;padding:0 15px;color:var(--ink);outline:none}
+    textarea{min-height:94px;padding-top:14px;resize:vertical}
+    input:focus,select:focus,textarea:focus{border-color:rgba(23,22,20,.42);box-shadow:0 0 0 4px rgba(23,22,20,.05)}
+    .choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .choice{position:relative;display:flex;min-height:86px;cursor:pointer}
+    .choice input{position:absolute;opacity:0;pointer-events:none}
+    .choice span{display:flex;width:100%;align-items:flex-end;border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px;color:var(--ink);font-size:.84rem;font-weight:800;line-height:1.25;transition:.18s ease}
+    .choice input:checked+span{border-color:var(--ink);background:var(--ink);color:#fff;transform:translateY(-2px)}
+    .choice input:focus-visible+span{outline:3px solid rgba(168,79,46,.25)}
+    .checkline{display:flex;align-items:flex-start;gap:11px;color:var(--muted);font-size:.82rem;line-height:1.5}
+    .checkline input{width:18px;height:18px;margin-top:2px;accent-color:var(--ink);flex:0 0 auto}
+    .checkline a{font-weight:800}
+    .conditional{display:none}
+    .conditional.visible{display:grid}
+    .submit{min-height:58px;border:0;border-radius:999px;background:var(--ink);color:#fff;font-weight:850;cursor:pointer}
+    .submit:hover{background:var(--rust)}
+    .submit:disabled{opacity:.6;cursor:wait}
+    .status{display:none;border-radius:16px;padding:15px;font-size:.88rem;font-weight:700;line-height:1.5}
+    .status.visible{display:block}
+    .status.error{background:var(--error);color:#8b2f20}
+    .status.success{background:var(--success);color:#235b32}
+    .success-panel{display:none}
+    .success-panel.visible{display:block}
+    .success-panel h3{margin:0 0 12px;font-family:"Cormorant Garamond",Georgia,serif;font-size:3rem;line-height:.9}
+    .success-panel p{color:var(--muted);line-height:1.6}
+    .next-step{margin-top:22px;border-left:4px solid var(--rust);background:var(--paper);padding:17px 18px;font-weight:750;line-height:1.5}
+    footer{padding:34px 0;background:var(--ink);color:rgba(255,255,255,.7);font-size:.75rem}
+    footer .shell{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    @media(max-width:800px){
+      .hero{min-height:700px}.hero-photo{object-position:58% center}.hero-content{padding-bottom:44px}
+      .intro-grid,.registration-grid{grid-template-columns:1fr;gap:42px}.sticky{position:static}.registration{padding-top:62px}
+    }
+    @media(max-width:560px){
+      .shell{width:min(100% - 24px,1180px)}header{padding:18px 0}.brand{width:140px}.hero{min-height:650px}
+      h1{font-size:4.6rem}.hero-meta{gap:8px}.meta-pill{font-size:.75rem;padding:9px 12px}.intro{padding:58px 0}
+      .two-col,.choices{grid-template-columns:1fr}.choice{min-height:66px}.form-card{padding:22px 16px;border-radius:22px}
+      .fact{grid-template-columns:95px 1fr}.registration{padding-bottom:72px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell"><a href="/" aria-label="Fabio Nazzari"><img class="brand" src="/assets/logos/logo-consulenza.png" alt="Fabio Nazzari"></a></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <img class="hero-photo" src="/assets/photos/fabio-laboratorio.jpeg" alt="Fabio Nazzari lavora un impasto nel laboratorio">
+      <div class="hero-content">
+        <div class="shell">
+          <p class="kicker">Dentro l'Officina · 01</p>
+          <h1>Il pane<span>Laboratorio pratico senza glutine</span></h1>
+          <div class="hero-meta">
+            <span class="meta-pill">Sabato 12 settembre</span>
+            <span class="meta-pill">09:00—16:00</span>
+            <span class="meta-pill">Officina Intollerante · Iseo</span>
+            <span class="meta-pill">Massimo 10 persone</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="shell intro-grid">
+        <div>
+          <p class="eyebrow">Non una dimostrazione</p>
+          <h2>Qui non guardi.<br>Impasti.</h2>
+          <p class="lead">Una giornata per lavorare direttamente il pane senza glutine e comprendere consistenza, formatura, lievitazione e cottura.</p>
+        </div>
+        <div class="facts">
+          <div class="fact"><span class="fact-label">Formato</span><span class="fact-value">Corso pratico in presenza</span></div>
+          <div class="fact"><span class="fact-label">Docente</span><span class="fact-value">Fabio Nazzari</span></div>
+          <div class="fact"><span class="fact-label">Data</span><span class="fact-value">12 settembre 2026</span></div>
+          <div class="fact"><span class="fact-label">Orario</span><span class="fact-value">Dalle 09:00 alle 16:00</span></div>
+          <div class="fact"><span class="fact-label">Posti</span><span class="fact-value">Massimo 10 partecipanti</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="registration" id="iscrizione">
+      <div class="shell registration-grid">
+        <div class="sticky">
+          <p class="eyebrow">Prima edizione</p>
+          <h2>Iscriviti.</h2>
+          <div class="price"><strong>€210</strong><span>per partecipante</span></div>
+          <p class="price-note">Scegli come preferisci pagare. Dopo l'invio riceverai la conferma e, per bonifico o PayPal, le istruzioni necessarie via email o WhatsApp.</p>
+          <span class="limited">Solo 10 posti disponibili</span>
+        </div>
+
+        <div class="form-card">
+          <div id="form-copy">
+            <h3 class="form-heading">Richiedi l'iscrizione</h3>
+            <p class="form-intro">Compila i dati essenziali. La richiesta verrà inserita direttamente nella Dashboard di Fabio Nazzari.</p>
+          </div>
+
+          <form id="course-form" novalidate>
+            <div class="section">
+              <p class="section-title">I tuoi dati</p>
+              <div class="two-col">
+                <label class="field">Nome<input required type="text" name="nome" autocomplete="given-name"></label>
+                <label class="field">Cognome<input required type="text" name="cognome" autocomplete="family-name"></label>
+              </div>
+              <label class="field">Email<input required type="email" name="email" autocomplete="email"></label>
+              <div class="two-col">
+                <label class="field">Telefono / WhatsApp<input required type="tel" name="telefono" autocomplete="tel" placeholder="+39"></label>
+                <label class="field">Città<input required type="text" name="citta" autocomplete="address-level2"></label>
+              </div>
+            </div>
+
+            <div class="section">
+              <p class="section-title">Profilo</p>
+              <div class="choices">
+                <label class="choice"><input required type="radio" name="profilo" value="Professionista"><span>Professionista</span></label>
+                <label class="choice"><input required type="radio" name="profilo" value="Appassionato evoluto"><span>Appassionato evoluto</span></label>
+              </div>
+              <label class="field">Attività o azienda <small>(facoltativo)</small><input type="text" name="attivita"></label>
+              <label class="field">Come hai scoperto il corso?
+                <select name="provenienza" required>
+                  <option value="">Seleziona</option>
+                  <option>Instagram</option><option>Facebook</option><option>WhatsApp</option><option>Passaparola</option><option>Sito web</option><option>Altro</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="section">
+              <p class="section-title">Pagamento</p>
+              <div class="choices">
+                <label class="choice"><input required type="radio" name="pagamento" value="Bonifico"><span>Bonifico bancario</span></label>
+                <label class="choice"><input required type="radio" name="pagamento" value="PayPal"><span>PayPal</span></label>
+                <label class="choice"><input required type="radio" name="pagamento" value="Contanti al corso"><span>Contanti al corso</span></label>
+              </div>
+              <label class="field">Hai bisogno della fattura?
+                <select name="fattura" id="fattura" required><option value="">Seleziona</option><option value="No">No</option><option value="Sì">Sì</option></select>
+              </label>
+              <div id="invoice-fields" class="conditional section">
+                <label class="field">Intestatario / Ragione sociale<input type="text" name="intestatario_fattura"></label>
+                <div class="two-col">
+                  <label class="field">Codice fiscale / Partita IVA<input type="text" name="codice_fiscale_piva"></label>
+                  <label class="field">Codice SDI o PEC<input type="text" name="sdi_pec"></label>
+                </div>
+                <label class="field">Indirizzo di fatturazione<input type="text" name="indirizzo_fattura"></label>
+              </div>
+            </div>
+
+            <div class="section">
+              <label class="checkline"><input required type="checkbox" name="privacy"><span>Acconsento al trattamento dei dati per gestire questa richiesta di iscrizione e dichiaro di aver letto l'<a href="/privacy/" target="_blank" rel="noopener">informativa privacy</a>.</span></label>
+              <label class="checkline"><input type="checkbox" name="marketing"><span>Voglio ricevere in anteprima le prossime date e gli altri corsi “Dentro l'Officina”.</span></label>
+            </div>
+
+            <div id="status" class="status" role="status" aria-live="polite"></div>
+            <button id="submit" class="submit" type="submit">Invia richiesta di iscrizione</button>
+          </form>
+
+          <div id="success-panel" class="success-panel" aria-live="polite">
+            <p class="eyebrow">Richiesta ricevuta</p>
+            <h3>Ci vediamo dentro l'Officina.</h3>
+            <p>I tuoi dati sono stati registrati. Riceverai la conferma e le indicazioni relative al metodo di pagamento scelto via email o WhatsApp.</p>
+            <div id="payment-next-step" class="next-step"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell"><span>Fabio Nazzari · Officina Intollerante</span><span>Iseo, Brescia</span></div></footer>
+
+  <script>
+    const endpoint = '/.netlify/functions/lead-intake';
+    const form = document.querySelector('#course-form');
+    const submit = document.querySelector('#submit');
+    const statusBox = document.querySelector('#status');
+    const invoiceSelect = document.querySelector('#fattura');
+    const invoiceFields = document.querySelector('#invoice-fields');
+    const successPanel = document.querySelector('#success-panel');
+    const formCopy = document.querySelector('#form-copy');
+    const paymentNextStep = document.querySelector('#payment-next-step');
+
+    invoiceSelect.addEventListener('change', () => {
+      const visible = invoiceSelect.value === 'Sì';
+      invoiceFields.classList.toggle('visible', visible);
+      invoiceFields.querySelectorAll('input').forEach((input) => { input.required = visible; });
+    });
+
+    const getValue = (data, key) => String(data.get(key) || '').trim();
+    const paymentCopy = {
+      'Bonifico': 'Hai scelto il bonifico: ti invieremo coordinate e causale. Il posto resterà riservato per 48 ore dalla ricezione delle istruzioni.',
+      'PayPal': 'Hai scelto PayPal: ti invieremo il link da €210 per completare il pagamento.',
+      'Contanti al corso': 'Hai scelto di pagare in laboratorio. Ti chiederemo una conferma via WhatsApp 72 ore prima del corso.'
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      const profilo = getValue(data, 'profilo');
+      const pagamento = getValue(data, 'pagamento');
+      const attivita = getValue(data, 'attivita');
+      const marketing = data.get('marketing') ? 'Sì' : 'No';
+      const query = new URLSearchParams(window.location.search);
+      const source = query.get('utm_source') || getValue(data, 'provenienza') || 'pagina_corso';
+      const details = [
+        'ISCRIZIONE · DENTRO L’OFFICINA 01 · IL PANE',
+        'Data: 12 settembre 2026 · 09:00—16:00',
+        'Importo: €210',
+        `Profilo: ${profilo}`,
+        `Metodo pagamento: ${pagamento}`,
+        `Stato pagamento: ${pagamento === 'Contanti al corso' ? 'da confermare' : 'in attesa'}`,
+        `Fattura: ${getValue(data, 'fattura')}`,
+        `Intestatario: ${getValue(data, 'intestatario_fattura')}`,
+        `CF/P.IVA: ${getValue(data, 'codice_fiscale_piva')}`,
+        `SDI/PEC: ${getValue(data, 'sdi_pec')}`,
+        `Indirizzo fattura: ${getValue(data, 'indirizzo_fattura')}`,
+        `Consenso prossimi corsi: ${marketing}`,
+        `Provenienza: ${getValue(data, 'provenienza')}`
+      ].join('\n');
+      const payload = {
+        schema_version: 'site_lead.v1',
+        submitted_at: new Date().toISOString(),
+        source: 'sito',
+        lead: {
+          nome: getValue(data, 'nome'), cognome: getValue(data, 'cognome'),
+          azienda_attivita: attivita || (profilo === 'Professionista' ? 'Professionista' : 'Privato'),
+          email: getValue(data, 'email'), telefono: getValue(data, 'telefono'), citta: getValue(data, 'citta'), country: 'Italia',
+          tipo_richiesta: 'corso_formazione', tipo_attivita: profilo === 'Professionista' ? 'altro' : 'privato',
+          messaggio: details, consenso_contatto: true
+        },
+        context: {
+          source_page: 'dentro_officina_01_il_pane', source_cta: source,
+          form_variant: 'iscrizione_12_settembre_2026', client_segment: profilo,
+          product_line: 'academy_live', page_url: window.location.href, page_path: window.location.pathname
+        }
+      };
+
+      submit.disabled = true;
+      submit.textContent = 'Invio in corso…';
+      statusBox.className = 'status';
+      try {
+        const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.ok === false) throw new Error(result.message || 'Invio non riuscito.');
+        form.style.display = 'none';
+        formCopy.style.display = 'none';
+        paymentNextStep.textContent = paymentCopy[pagamento] || 'Ti contatteremo a breve per confermare il posto.';
+        successPanel.classList.add('visible');
+        successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (error) {
+        statusBox.textContent = error.message || 'Non sono riuscito a inviare la richiesta. Riprova tra poco.';
+        statusBox.className = 'status error visible';
+      } finally {
+        submit.disabled = false;
+        submit.textContent = 'Invia richiesta di iscrizione';
+      }
+    });
+  </script>
+</body>
+</html>
