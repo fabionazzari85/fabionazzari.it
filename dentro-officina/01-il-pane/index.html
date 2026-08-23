@@ -103,13 +103,24 @@
     footer .shell{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
     @media(max-width:800px){
       .hero{min-height:700px}.hero-photo{object-position:58% center}.hero-content{padding-bottom:44px}
-      .intro-grid,.registration-grid{grid-template-columns:1fr;gap:42px}.sticky{position:static}.registration{padding-top:62px}
+      .intro-grid,.registration-grid{grid-template-columns:minmax(0,1fr);gap:42px}
+      .sticky{position:static}.registration{padding-top:62px}
+      .form-card,.registration-grid>*,form,.section,.two-col,.choices{min-width:0}
     }
     @media(max-width:560px){
-      .shell{width:min(100% - 24px,1180px)}header{padding:18px 0}.brand{width:140px}.hero{min-height:650px}
-      h1{font-size:4.6rem}.hero-meta{gap:8px}.meta-pill{font-size:.75rem;padding:9px 12px}.intro{padding:58px 0}
-      .two-col,.choices{grid-template-columns:1fr}.choice{min-height:66px}.form-card{padding:22px 16px;border-radius:22px}
-      .fact{grid-template-columns:95px 1fr}.registration{padding-bottom:72px}
+      .shell{width:calc(100% - 20px)}header{padding:18px 0}.brand{width:140px}.hero{min-height:650px}
+      h1{font-size:4.35rem}.hero-meta{gap:8px}.meta-pill{max-width:100%;font-size:.75rem;padding:9px 12px;white-space:normal}.intro{padding:58px 0}
+      .registration{padding:48px 0 64px}.registration-grid{gap:32px}.price{margin-top:22px}.price strong{font-size:4.35rem}
+      .form-card{width:100%;padding:22px 14px;border-radius:20px}.form-heading{font-size:2.35rem}.form-intro{margin-bottom:22px}
+      form{gap:20px}.section{gap:13px;padding-bottom:20px}.two-col,.choices{grid-template-columns:minmax(0,1fr);gap:11px}
+      input[type=text],input[type=email],input[type=tel],select,textarea{min-width:0;min-height:56px;border-radius:12px;font-size:16px}
+      .choice{min-height:58px}.choice span{align-items:center;min-height:58px;padding:13px 15px;border-radius:13px}
+      .checkline{font-size:.8rem;line-height:1.45}.submit{width:100%;min-height:60px;padding:0 18px;font-size:.94rem}
+      .fact{grid-template-columns:88px minmax(0,1fr);gap:12px}.fact-value{overflow-wrap:anywhere}
+    }
+    @media(max-width:370px){
+      .shell{width:calc(100% - 16px)}.form-card{padding:20px 12px}.form-heading{font-size:2.15rem}
+      h1{font-size:3.85rem}.price strong{font-size:4rem}.choice span{font-size:.82rem}
     }
   </style>
 </head>
@@ -127,8 +138,8 @@
           <h1>Il pane<span>Laboratorio pratico senza glutine</span></h1>
           <div class="hero-meta">
             <span class="meta-pill">Sabato 12 settembre</span>
-            <span class="meta-pill">09:00—16:00</span>
-            <span class="meta-pill">Officina Intollerante · Iseo</span>
+            <span class="meta-pill">09:00–16:00</span>
+            <span class="meta-pill">Via Giardini Garibaldi 3E · Iseo (BS)</span>
             <span class="meta-pill">Massimo 10 persone</span>
           </div>
         </div>
@@ -147,6 +158,7 @@
           <div class="fact"><span class="fact-label">Docente</span><span class="fact-value">Fabio Nazzari</span></div>
           <div class="fact"><span class="fact-label">Data</span><span class="fact-value">12 settembre 2026</span></div>
           <div class="fact"><span class="fact-label">Orario</span><span class="fact-value">Dalle 09:00 alle 16:00</span></div>
+          <div class="fact"><span class="fact-label">Dove</span><span class="fact-value">Officina Intollerante · Via Giardini Garibaldi 3E, Iseo (BS)</span></div>
           <div class="fact"><span class="fact-label">Posti</span><span class="fact-value">Massimo 10 partecipanti</span></div>
         </div>
       </div>
@@ -186,7 +198,7 @@
               <p class="section-title">Profilo</p>
               <div class="choices">
                 <label class="choice"><input required type="radio" name="profilo" value="Professionista"><span>Professionista</span></label>
-                <label class="choice"><input required type="radio" name="profilo" value="Appassionato evoluto"><span>Appassionato evoluto</span></label>
+                <label class="choice"><input required type="radio" name="profilo" value="Appassionato"><span>Appassionato</span></label>
               </div>
               <label class="field">Attività o azienda <small>(facoltativo)</small><input type="text" name="attivita"></label>
               <label class="field">Come hai scoperto il corso?
@@ -237,7 +249,7 @@
     </section>
   </main>
 
-  <footer><div class="shell"><span>Fabio Nazzari · Officina Intollerante</span><span>Iseo, Brescia</span></div></footer>
+  <footer><div class="shell"><span>Fabio Nazzari · Officina Intollerante</span><span>Via Giardini Garibaldi 3E · Iseo (BS)</span></div></footer>
 
   <script>
     const endpoint = '/.netlify/functions/lead-intake';
@@ -275,7 +287,8 @@
       const source = query.get('utm_source') || getValue(data, 'provenienza') || 'pagina_corso';
       const details = [
         'ISCRIZIONE · DENTRO L’OFFICINA 01 · IL PANE',
-        'Data: 12 settembre 2026 · 09:00—16:00',
+        'Data: 12 settembre 2026 · 09:00–16:00',
+        'Luogo: Officina Intollerante · Via Giardini Garibaldi 3E, Iseo (BS)',
         'Importo: €210',
         `Profilo: ${profilo}`,
         `Metodo pagamento: ${pagamento}`,
