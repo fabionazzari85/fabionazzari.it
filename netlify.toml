@@ -39,6 +39,24 @@
   status = 301
 
 [[redirects]]
+  from = "/pasticceria"
+  to = "/negozio"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pasticceria/"
+  to = "/negozio"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/negozio.html"
+  to = "/negozio"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/links"
   to = "/bio"
   status = 301

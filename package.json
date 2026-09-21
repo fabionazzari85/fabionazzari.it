@@ -3,9 +3,10 @@
   "private": true,
   "scripts": {
     "dev:netlify": "netlify dev",
-    "lint": "node scripts/validate-recipes.mjs",
-    "typecheck": "node --check scripts/build-recipes.mjs && node --check scripts/validate-recipes.mjs",
-    "build": "node scripts/build-recipes.mjs"
+    "lint": "node scripts/validate-recipes.mjs && node scripts/validate-seo.mjs",
+    "typecheck": "node --check build-locales.mjs && node --check scripts/build-core-pages.mjs && node --check scripts/build-recipes.mjs && node --check scripts/validate-recipes.mjs && node --check scripts/validate-seo.mjs",
+    "build": "node scripts/build-core-pages.mjs && node scripts/build-recipes.mjs",
+    "validate:seo": "node scripts/validate-seo.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "^10.7.4"

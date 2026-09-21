@@ -2,10 +2,10 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { publishedRecipeContents as localPublishedRecipeContents } from "../data/recipes.mjs";
+import { graph, personRef, siteUrl, websiteId } from "./seo-data.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
-const siteUrl = "https://www.fabionazzari.it";
 const dashboardApiBase = process.env.DASHBOARD_PUBLIC_API_BASE || "https://dashboard.fabionazzari.it";
 const dashboardFetchTimeoutMs = Number(process.env.DASHBOARD_PUBLIC_API_TIMEOUT_MS || 5000);
 const trackingConfig = {
@@ -147,34 +147,26 @@ const recipeInstructions = (steps) =>
   }));
 
 const articleStructuredData = (content) => ({
-  "@context": "https://schema.org",
   "@type": content.type === "guide" ? "BlogPosting" : "Article",
+  "@id": `${absoluteUrl(content.canonicalPath || `/ricette/${content.slug}`)}#article`,
   headline: content.title,
   description: content.seoDescription || content.excerpt,
   image: [absoluteUrl(getContentImage(content))],
-  author: {
-    "@type": "Person",
-    name: "Fabio Nazzari"
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "Fabio Nazzari"
-  },
+  author: personRef(),
+  publisher: personRef(),
   datePublished: content.publishedAt,
   dateModified: content.updatedAt,
-  mainEntityOfPage: absoluteUrl(content.canonicalPath || `/ricette/${content.slug}`)
+  mainEntityOfPage: absoluteUrl(content.canonicalPath || `/ricette/${content.slug}`),
+  isPartOf: { "@id": websiteId }
 });
 
 const recipeStructuredData = (content) => ({
-  "@context": "https://schema.org",
   "@type": "Recipe",
+  "@id": `${absoluteUrl(content.canonicalPath || `/ricette/${content.slug}`)}#recipe`,
   name: content.title,
   description: content.seoDescription || content.excerpt,
   image: [absoluteUrl(getContentImage(content))],
-  author: {
-    "@type": "Person",
-    name: "Fabio Nazzari"
-  },
+  author: personRef(),
   datePublished: content.publishedAt,
   dateModified: content.updatedAt,
   prepTime: content.prepTime,
@@ -206,7 +198,7 @@ const baseHead = ({ title, description, canonical, image, type = "website", stru
   <link rel="preload" as="image" href="${escapeHtml(getPreloadImageHref(image || "/assets/photos/fabio-ritratto-grissini.jpeg"))}">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script type="application/ld+json">${JSON.stringify(structuredData).replace(/</g, "\\u003c")}</script>
+  <script type="application/ld+json">${JSON.stringify(graph(structuredData)).replace(/</g, "\\u003c")}</script>
   <style>
     * { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
     :root { --cream:#FAF8F5; --paper:#F5F3EF; --ink:#1A1A18; --muted:#6b6257; --accent:#8B5E3C; --accent-soft:#E8DED1; }
