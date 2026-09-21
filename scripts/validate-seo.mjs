@@ -79,6 +79,12 @@ for (const page of corePages) {
     fail(`sitemap: missing ${url}`);
   }
 }
+for (const coursePath of ["/dentro-officina/01-il-pane/", "/dentro-officina/pani-speciali-pizza-focaccia/"]) {
+  const url = `${siteUrl}${coursePath}`;
+  if (!sitemap.includes(`<loc>${url}</loc>`)) {
+    fail(`sitemap: missing ${url}`);
+  }
+}
 for (const redirectPath of redirects.keys()) {
   if (sitemap.includes(`<loc>${siteUrl}${redirectPath}</loc>`)) {
     fail(`sitemap: contains redirect ${redirectPath}`);

@@ -332,6 +332,7 @@ const buildSitemap = async () => {
     "/privacy",
     "/bio",
     "/dentro-officina/01-il-pane/",
+    "/dentro-officina/pani-speciali-pizza-focaccia/",
     "/en/b2b",
     "/en/contact",
     "/en/pastry-shop",
