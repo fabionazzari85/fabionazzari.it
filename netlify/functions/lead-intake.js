@@ -35,6 +35,13 @@ const responseHeaders = {
   "Cache-Control": "no-store"
 };
 
+const COURSE_NOTIFICATION_LABELS = {
+  iscrizione_12_settembre_2026: "Il pane · 12 settembre",
+  iscrizione_13_settembre_2026: "Il pane · 13 settembre",
+  iscrizione_pani_pizza_focaccia_2026_10_10: "Pani speciali, pizza e focaccia · 10 ottobre",
+  iscrizione_pani_pizza_focaccia_2026_10_11: "Pani speciali, pizza e focaccia · 11 ottobre"
+};
+
 const json = (statusCode, body) => ({
   statusCode,
   headers: responseHeaders,
@@ -80,7 +87,7 @@ const sendCourseNotification = async (lead) => {
       body: JSON.stringify({
         from: LEAD_NOTIFICATION_FROM,
         to: [LEAD_NOTIFICATION_EMAIL],
-        subject: "Nuova iscrizione · Dentro l'Officina 01 Il pane",
+        subject: `Nuova iscrizione · ${COURSE_NOTIFICATION_LABELS[lead.form_variant] || "Dentro l'Officina"}`,
         html,
         text: "Hai ricevuto una nuova iscrizione al corso. Apri la Dashboard per consultare i dati: https://dashboard.fabionazzari.it"
       })
